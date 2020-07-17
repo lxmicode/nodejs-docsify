@@ -4,9 +4,9 @@
 
 ## Docker环境配置
 
-- 安装`Docker`，Link:[Centos7上安装配置Docker](https://github.com/RobertoHuang/RGP-LEARNING/blob/master/Docker/01.Centos7%E4%B8%8A%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AEDocker.md)
+- 安装`Docker`，Link:[Centos7上安装配置Docker](https://docs.docker.com/engine/install/centos/)
 
-- 安装`Docker Compose`，Link:[Docker Compose安装与简单使用](https://github.com/RobertoHuang/RGP-LEARNING/blob/master/Docker/Docker%20Compose%E5%AE%89%E8%A3%85%E4%B8%8E%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8.md)
+- 安装`Docker Compose`，Link:[Docker Compose使用](https://www.runoob.com/docker/docker-compose.html)
 
 - 编写`DockerFile.onbuild`文件，并使用该文件构建出基础镜像供后续使用
 
@@ -72,6 +72,11 @@
   ```
 
   其中`docsify:onbuild`是在第一步`Docker`环境准备时打的基础镜像，参考`Dockerfile.onbuild`
+  
+  执行一次以下命令完整部署
+  ```shell
+  $ docker-compose up -d
+  ```
 
 ## Docsify文档说明
 
