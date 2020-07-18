@@ -98,15 +98,44 @@ sudo docker run  -d --link db:mysqlLink --name web nginx
 sudo docker port 镜像id/别名
 ```
 
+## Docker Compose
+Compose 是用于定义和运行多容器 Docker 应用程序的工具
 
+###  `Dockerfile 容器配置`
 
+###  `、
+配置 `
+- 简单配置
+```yaml
+version: "3"
+services:
+  web:
+    image: nginx #镜像名
+    container_name: web #容器名称
+    porst: #端口
+      - 80:80
+    volumes: ##容器卷
+      - /root/nginx/config/nginx.conf:/etc/nginx/nginx.conf
+      - /root/nginx/html:/usr/share/nginx/html
+```
 
+## 练习
+### 使用 compose 配置 nginx
+1. 宿主机目录准备
+/root/nginx/config/nginx.conf nginx配置文件
+/root/nginx/html html目录
+/root/nginx/logs  日志目录
 
-
-
-
-
-
+2. 获取 nginx.conf 到  /root/nginx/config/nginx.conf
+```shell
+$ sudo docker run --name web -d nginx
+$ sudo docker cp web:/etc/nginx/nginx.conf /root/nginx/config/nginx.conf
+$ sudo docker rm -f web
+```
+3. 获取nginx配置文件，容器卷会
+```shell
+$ sudo docker run --name web
+```
 
 
 
