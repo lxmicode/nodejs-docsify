@@ -1,31 +1,35 @@
 ## 镜像命令
-###  `search` 
+###  `镜像加速` 
+
+
+## 镜像命令
+###  `search 查询镜像` 
 - 查询镜像
 ```docker
 sudo docker search 镜像名
-docker search centos
+sudo docker search centos
 ```
 
-### `pull` 
+### `pull 拉取镜像` 
 - 拉取镜像
 ```docker
 docker pull 镜像名:版本(默认最新)
 ```
 
-### `image` 
+### `image 查看镜像` 
 - 查看所有镜像
 ```docker
 docker image
 ```
 
-### `run` 
-- 创建容器并运行
+### `run 创建并运行` 
+- 创建并运行容器
 ```docker
 sudo docker run 镜像名:版本(默认最新)
 sudo docker run centos:latest
 ```
 
-###   `commit` 
+###   `commit 提交` 
 - 提交镜像
 ```docker
 docker commit 镜像ID/镜像名称
@@ -49,7 +53,22 @@ sudo docker ps -a
 ###  `rm` 
 - 删除
 
-## 网络配置(容器之间)
+## 数据管理
+###  `-v 容器卷` 
+- 供容器使用的特殊目录，立即生效，更新不影响镜像，一直存在直到没有容器使用
+- 命令
+`VOLUME ["<路径1>", "<路径2>"...]  或 -v 主机目录:容器目录`
+- 例子1，后台创建并启动一个叫web的nginx容器，并设置一个容器卷
+/var/log/nginx 对应主机  /root/nginx/logs 目录，用于查看nginx日志
+```docker
+sudo docker run  -d  -v /root/nginx/logs:/var/log/nginx  --name web nginx
+```
+- 例子2 nginx中创建2个目录，至于主机目录随机，通过inspect 命令查看Mounts配置
+```docker
+sudo docker run  -d   volume["containerDir1","containerDir2"]  --name web nginx
+```
+
+## 容器交互
 默认容器之间无法通讯，需指定端口 -p/-P参数
 ###  `-p` 
 - 指定对外端口
@@ -61,7 +80,7 @@ sudo docker run -p 本机端口:容器端口 镜像名
 sudo docker run  -d -p 80:80 --name web nginx
 ```
 
-###  `--link` 
+###  `--link 容器间连接` 
 - 容器之间交互
 ```docker
 sudo docker run  --link 容器名:连接名
@@ -73,7 +92,7 @@ sudo docker run  -d --name db mysql
 sudo docker run  -d --link db:mysqlLink --name web nginx
 ```
 
-###  `port` 
+###  `port 端口信息` 
 - 查看容易映射端口信息
 ```docker
 sudo docker port 镜像id/别名
