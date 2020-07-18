@@ -65,13 +65,13 @@
 
 - `DockerFile`
 
-  > 用于构建进行的脚本，内容固定如下
+  > 用于docker-compose构建容器进行的脚本，内容固定如下
 
   ```shell
   FROM docsify:onbuild
   ```
 
-  其中`docsify:onbuild`是在第一步`Docker`环境准备时打的基础镜像，参考`Dockerfile.onbuild`
+  其中`docker-compose 通过 docker-compose.yml + DockerFile 构建镜像 `
   
   执行一次以下命令完整部署
   ```shell
@@ -148,34 +148,3 @@
   - [docsify文档生成器 https://docsify.js.org/#/?id=docsify-494](https://docsify.js.org/#/?id=docsify-494)
   - [VuePress静态网站生成器 https://vuepress.vuejs.org/zh/guide/](https://vuepress.vuejs.org/zh/guide/)
 
-- `UML`支持
-
-  `Markdown`扩展支持[PlantUML](http://plantuml.com/zh/index)
-
-  例如代码块:
-
-  ```reStructuredText
-  ​```plantuml
-  Alice -> Bob: 你好！！
-  ​```
-  ```
-
-  将会生成时序图:
-
-  ![markdown-plantuml01.png](https://raw.githubusercontent.com/RobertoHuang/RGP-LEARNING/master/Others/images/markdown-plantuml01.png)
-
-  而如下代码块
-
-  ```text
-  ​```plantuml
-  class Car
-    
-  Driver - Car : drives >
-  Car *- Wheel : have 4 >
-  Car -- Person : < owns
-  ​```
-  ```
-
-  将会生成类图:
-
-  ![markdown-plantuml02.png](https://raw.githubusercontent.com/RobertoHuang/RGP-LEARNING/master/Others/images/markdown-plantuml02.png)
