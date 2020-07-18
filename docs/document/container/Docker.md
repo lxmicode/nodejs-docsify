@@ -122,9 +122,9 @@ services:
 ## 练习
 ### 使用 compose 配置 nginx
 1. 宿主机目录准备
-/root/nginx/config/nginx.conf nginx配置文件
-/root/nginx/html html目录
-/root/nginx/logs  日志目录
+- 	/root/nginx/config/nginx.conf nginx配置文件
+- 	/root/nginx/html html目录
+- 	/root/nginx/logs  日志目录
 
 2. 获取 nginx.conf 到  /root/nginx/config/nginx.conf
 ```shell
@@ -136,6 +136,18 @@ $ sudo docker rm -f web
 ```shell
 $ sudo docker run --name web
 ```
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
