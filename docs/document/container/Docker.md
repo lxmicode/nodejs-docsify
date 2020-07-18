@@ -103,7 +103,7 @@ Compose 是用于定义和运行多容器 Docker 应用程序的工具
 
 ###  `Dockerfile 容器配置`
 
-###  `、
+###  `Dockerfile Compose`
 配置 `
 - 简单配置
 ```yaml
@@ -136,18 +136,6 @@ $ sudo docker rm -f web
 ```shell
 $ sudo docker run --name web
 ```
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
