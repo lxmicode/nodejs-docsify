@@ -68,9 +68,19 @@ sudo docker run  -d  -v /root/nginx/logs:/var/log/nginx  --name web nginx
 sudo docker run  -d   volume["containerDir1","containerDir2"]  --name web nginx
 ```
 
+###  `--volumes-from 数据卷容器`
+数据需要在容器之间共享
+- 命令
+`docker run --volumes-from [container name]`
+- 例子,创建voldatas数据卷容器，app1引用达到共享目的
+```docker
+$ docker run -name voldatas -v 主机目录:容器目录 -itd  centos
+$ docker run --volumes-from voldatas  -name app1 -itd   centos
+```
+
 ## 容器交互
 默认容器之间无法通讯，需指定端口 -p/-P参数
-###  `-p` 
+###  `-p`
 - 指定对外端口
 ```docker
 sudo docker run -p 本机端口:容器端口 镜像名
