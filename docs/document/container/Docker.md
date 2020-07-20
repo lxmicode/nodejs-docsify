@@ -2,6 +2,13 @@
 ###  `镜像加速` 
 
 
+## 设置开机启动
+###  `centos` 
+```bash
+$ sudo systemctl enable docke
+```
+
+
 ## 镜像命令
 ###  `search 查询镜像` 
 - 查询镜像
@@ -52,6 +59,14 @@ sudo docker ps -a
 
 ###  `rm` 
 - 删除
+
+###  `update 更新` 
+更新容器
+- --restart docker启动容器启动
+```docker
+$ docker update --restart=always <CONTAINER ID>
+```
+
 
 ## 数据管理
 ###  `-v 容器卷` 
