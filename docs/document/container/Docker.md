@@ -151,20 +151,32 @@ services:
 - 	/root/nginx/html html目录
 - 	/root/nginx/logs  日志目录
 
-2. 获取 nginx.conf 到  /root/nginx/config/nginx.conf
+2. 获取nginx.conf配置文件 到  /root/nginx/config/nginx.conf
 ```shell
 $ sudo docker run --name web -d nginx
 $ sudo docker cp web:/etc/nginx/nginx.conf /root/nginx/config/nginx.conf
 $ sudo docker rm -f web
 ```
-3. 获取nginx配置文件，容器卷会
+3. 创建并启动Nginx
 ```shell
-$ sudo docker run --name web
+$ sudo docker run --name web\
+-p 80:80 \
+-v /root/nginx/config/nginx.conf:/etc/nginx/nginx.conf \
+-v /root/nginx/html:/usr/share/nginx/html \
+-v /root/nginx/logs:/var/log/nginx \
+-itd nginx \;
 ```
 
-
-
-
+### mysql 搭建练习
+- 搭建Mysql 设置管理密码和添加一个管理员账号，MYSQL_USER 默认管理员权限 
+```shell
+docker run --name my1  \
+-p 3306:3306 \
+-e MYSQL_ROOT_PASSWORD=管理员密码 \
+-e MYSQL_USER=新用户 \
+-e MYSQL_PASSWORD=新用户密码 \
+-itd mysql:5.7.31 \
+```
 
 
 
