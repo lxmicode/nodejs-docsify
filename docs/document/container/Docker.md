@@ -3,7 +3,7 @@
 
 
 ## 设置开机启动
-###  `centos` 
+###  `centos`
 ```bash
 $ sudo systemctl enable docke
 ```
@@ -39,7 +39,7 @@ sudo docker run centos:latest
 ###   `commit 提交` 
 - 提交镜像
 ```docker
-docker commit 镜像ID/镜像名称
+docker commit 镜像ID/镜像名称:版本
 ```
 
 ## 容器命令
@@ -69,16 +69,34 @@ $ docker update --restart=always <CONTAINER ID>
 
 
 ## 数据管理
-###  `-v 容器卷` 
+###  `容器卷` 
 - 供容器使用的特殊目录，立即生效，更新不影响镜像，一直存在直到没有容器使用
-- 命令
+- 官方推荐
+` docker volume COMMAND`
+`Commands:`
+`create      创建`
+ `inspect     查看详情`
+ `ls          查看所有`
+ `prune       删除未使用`
+ `rm          删除`
+
+- 例子
+创建一个容器卷,并创建一个nginx容器挂载html页面
+```docker
+sudo docker volume create test_vol
+sudo docker run -d --mount src=test_vol,dst=/usr/share/nginx/html nginx
+```
+- 命令-旧
 `VOLUME ["<路径1>", "<路径2>"...]  或 -v 主机目录:容器目录`
-- 例子1，后台创建并启动一个叫web的nginx容器，并设置一个容器卷
+- 例子
+后台创建并启动一个叫web的nginx容器，并设置一个容器卷
 /var/log/nginx 对应主机  /root/nginx/logs 目录，用于查看nginx日志
 ```docker
 sudo docker run  -d  -v /root/nginx/logs:/var/log/nginx  --name web nginx
 ```
-- 例子2 nginx中创建2个目录，至于主机目录随机，通过inspect 命令查看Mounts配置
+
+- 例子
+nginx中创建2个目录，至于主机目录随机，通过inspect 命令查看Mounts配置
 ```docker
 sudo docker run  -d   volume["containerDir1","containerDir2"]  --name web nginx
 ```
@@ -87,7 +105,9 @@ sudo docker run  -d   volume["containerDir1","containerDir2"]  --name web nginx
 数据需要在容器之间共享
 - 命令
 `docker run --volumes-from [container name]`
-- 例子,创建voldatas数据卷容器，app1引用达到共享目的
+
+- 例子
+创建voldatas数据卷容器，app1引用达到共享目的
 ```docker
 $ docker run -name voldatas -v 主机目录:容器目录 -itd  centos
 $ docker run --volumes-from voldatas  -name app1 -itd   centos
@@ -110,8 +130,9 @@ sudo docker run  -d -p 80:80 --name web nginx
 ```docker
 sudo docker run  --link 容器名:连接名
 ```
-- 例子，先创建一个DB容器，然后创建一个web容器连接DB容器。
-- 从此DB容器启动并没有使用-P/-p映射端口，两者之间创建了一个安全隧道，避免端口暴露
+- 例子
+先创建一个DB容器，然后创建一个web容器连接DB容器。
+从此DB容器启动并没有使用-P/-p映射端口，两者之间创建了一个安全隧道，避免端口暴露
 ```docker
 sudo docker run  -d --name db mysql
 sudo docker run  -d --link db:mysqlLink --name web nginx
