@@ -1,25 +1,25 @@
 ## 常用命令总结
-### `pull` 
+### `pull`
 - 拉取代码&__合并代码__
-```git
+```bash
 $ sudo git pull
 ```
 
-### `fetch` 
+### `fetch`
 - 拉取代码__不合并代码__
-```git
+```bash
 $ sudo git fetch
 ```
 
-### `add` 
+### `add`
 - 拉取代码__不合并代码__
-```git
+```bash
 $ sudo git add 文件名
 ```
 
-### `push` 
+### `push`
 - 提交代码
-```git
+```bash
 $ sudo git push
 ##强制提交 master 主分支
 $ sudo git push -u origin +master
@@ -27,7 +27,7 @@ $ sudo git push -u origin +master
 
 ### `练习`
 - 例子
-```git
+```bash
 ##clone 克隆代码
 $ sudo git clone https://github.com/fzsimlu/nodejs-docsify.git
 ##新增/编辑文件
