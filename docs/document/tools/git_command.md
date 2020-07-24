@@ -1,4 +1,11 @@
 ## 常用命令总结
+
+### `clone`
+- 克隆检出仓库
+```bash
+$ sudo git clone https://github.com/fzsimlu/nodejs-docsify.git
+```
+
 ### `pull`
 - 拉取代码&__合并代码__
 ```bash
@@ -12,7 +19,7 @@ $ sudo git fetch
 ```
 
 ### `add`
-- 拉取代码__不合并代码__
+- 添加修改文件
 ```bash
 $ sudo git add 文件名
 ```
@@ -23,6 +30,30 @@ $ sudo git add 文件名
 $ sudo git push
 ##强制提交 master 主分支
 $ sudo git push -u origin +master
+```
+
+### `branch`
+- 分支(branch)操作相关命令
+```bash
+##查看本地分支
+$ sudo git branch
+##查看远程分支
+$ sudo git branch -r
+```
+- 创建分支
+__注意新分支创建后不会自动切换为当前分支__
+```bash
+$ sudo git branch [name] 
+```
+
+- 切换分支
+```bash
+$ sudo git checkout [name]
+```
+
+- 创建新分支并立即切换到新分支
+```bash
+$ sudo git checkout -b [name]
 ```
 
 ### `练习`
