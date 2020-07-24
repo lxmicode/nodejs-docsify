@@ -22,6 +22,8 @@ $ sudo git fetch
 - 添加修改文件
 ```bash
 $ sudo git add 文件名
+##提交加当前子目录下所有更改过的文件
+$ sudo git add .
 ```
 
 ### `push`
@@ -56,7 +58,7 @@ $ sudo git checkout [name]
 $ sudo git checkout -b [name]
 ```
 
-### `练习`
+## `练习`
 - 例子
 ```bash
 ##clone 克隆代码
@@ -69,3 +71,6 @@ $ sudo git commit -m "备注"
 ##提交远程服务器
 $ sudo git push
 ```
+
+## 附录
+- [git命令大全](https://gist.github.com/guweigang/9848271)
