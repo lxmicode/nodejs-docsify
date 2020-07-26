@@ -1,5 +1,5 @@
 ## 镜像命令
-###  `镜像加速` 
+###  `镜像加速`
 
 
 ## 设置开机启动
@@ -126,14 +126,14 @@ sudo docker run  -d -p 80:80 --name web nginx
 ```
 
 ###  `--link 容器间连接` 
-- 容器之间交互
+- 容器之间交互,两者之间创建了一个安全隧道，避免端口暴露
 ```docker
 sudo docker run  --link 容器名:连接名
 ```
 - 例子
-先创建一个DB容器，然后创建一个alpine容器安装mysql客户端连接DB容器。
-从此DB容器启动并没有使用-P/-p映射端口，两者之间创建了一个安全隧道，避免端口暴露
+创建一个alpine容器，安装mysql客户端链接DB容器
 ```docker
+##创建DB容器
 sudo docker container run -d --name db -e MYSQL_ROOT_PASSWORD=123456 mysql:5.7
 $ sudo docker container run -itd --name testlink --link db:db_link alpine
 ##进去testlnk容器
@@ -153,10 +153,15 @@ sudo docker port 镜像id/别名
 ## Docker Compose
 Compose 是用于定义和运行多容器 Docker 应用程序的工具
 默认名:docker-compose.yml
-### `-f 指定配置文件`
+
+### `up 启动`
+默认启动docker-compose.yml
 ```docker
-sudo docker-compose -f 文件名
+sudo docker-compose up
+## -f 指定配置文件
+sudo docker-compose up  -f 文件名
 ```
+
 
 ###  `Dockerfile 容器配置`
 
