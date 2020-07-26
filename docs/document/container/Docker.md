@@ -131,11 +131,17 @@ sudo docker run  -d -p 80:80 --name web nginx
 sudo docker run  --link 容器名:连接名
 ```
 - 例子
-先创建一个DB容器，然后创建一个web容器连接DB容器。
+先创建一个DB容器，然后创建一个alpine容器安装mysql客户端连接DB容器。
 从此DB容器启动并没有使用-P/-p映射端口，两者之间创建了一个安全隧道，避免端口暴露
 ```docker
-sudo docker run  -d --name db mysql
-sudo docker run  -d --link db:mysqlLink --name web nginx
+sudo docker container run -d --name db -e MYSQL_ROOT_PASSWORD=123456 mysql:5.7
+$ sudo docker container run -itd --name testlink --link db:db_link alpine
+##进去testlnk容器
+$ sudo docker container exec -it testlnk sh
+##安装mysql客户端
+$ apk add --no-cache mysql-client
+##链接数据库
+$ mysql -h db_link -uroot -p 123456
 ```
 
 ###  `port 端口信息` 
@@ -146,6 +152,11 @@ sudo docker port 镜像id/别名
 
 ## Docker Compose
 Compose 是用于定义和运行多容器 Docker 应用程序的工具
+默认名:docker-compose.yml
+### `-f 指定配置文件`
+```docker
+sudo docker-compose -f 文件名
+```
 
 ###  `Dockerfile 容器配置`
 
@@ -164,6 +175,11 @@ services:
       - /root/nginx/config/nginx.conf:/etc/nginx/nginx.conf
       - /root/nginx/html:/usr/share/nginx/html
 ```
+
+## 相关其它
+### alpine
+Alpine Linux Docker 镜像基于 Alpine Linux 操作系统，后者是一个面向安全的轻型 Linux 发行版。Alpine Linux Docker 镜像也继承了 Alpine Linux 发行版的这些优势。相比于其他 Docker 镜像，它的容量非常小，仅仅只有 5M，且拥有非常友好的包管理器。
+
 
 ## 练习
 ### 使用 compose 配置 nginx
