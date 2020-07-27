@@ -162,7 +162,6 @@ sudo docker-compose up
 sudo docker-compose up  -f 文件名
 ```
 
-
 ###  `Dockerfile 容器配置`
 
 ###  `Dockerfile Compose`
@@ -215,7 +214,7 @@ $ sudo docker run --name web
 ```shell
 docker run --name my1
 -p 3306:3306
--e MYSQL_ROOT_PASSWORD=管理员密码
+-e MYSQL_ROOT_PASSWORD=管理员密码(必选)
 -e MYSQL_USER=新用户(可选)
 -e MYSQL_PASSWORD=新用户密码(可选)
 -itd mysql:5.7.31
