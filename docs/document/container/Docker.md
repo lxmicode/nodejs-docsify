@@ -212,12 +212,12 @@ $ sudo docker run --name web \
 ### mysql 搭建练习
 - 搭建Mysql 设置管理密码和添加一个管理员账号，MYSQL_USER 默认管理员权限
 ```docker
-docker run --name my1
--p 3306:3306
--e MYSQL_ROOT_PASSWORD=管理员密码(必选)
--e MYSQL_USER=新用户(可选)
--e MYSQL_PASSWORD=新用户密码(可选)
--itd mysql:5.7.31
+$ docker run --name my1 \
+ -p 3306:3306 \
+ -e MYSQL_ROOT_PASSWORD=管理员密码(必选) \
+ -e MYSQL_USER=新用户(可选) \
+ -e MYSQL_PASSWORD=新用户密码(可选) \
+ -itd mysql:5.7.31  \;
 ```
 
 
