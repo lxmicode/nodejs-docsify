@@ -199,6 +199,7 @@ $ sudo docker run --name web -d nginx
 $ sudo docker cp web:/etc/nginx/nginx.conf /root/nginx/config/nginx.conf
 $ sudo docker rm -f web
 ```
+
 3. 创建并启动Nginx
 ```shell
 $ sudo docker run --name web\
