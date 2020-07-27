@@ -193,15 +193,25 @@ Alpine Linux Docker 镜像基于 Alpine Linux 操作系统，后者是一个面�
 - 	/root/nginx/logs  日志目录
 
 2. 获取nginx.conf配置文件 到  /root/nginx/config/nginx.conf
-```bash
+```shell
 $ sudo docker run --name web -d nginx
 $ sudo docker cp web:/etc/nginx/nginx.conf /root/nginx/config/nginx.conf
 $ sudo docker rm -f web
 ```
 
+3. 创建并启动Nginx
+```docker
+$ sudo docker run --name web
+-p 80:80
+-v /root/nginx/config/nginx.conf:/etc/nginx/nginx.conf
+-v /root/nginx/html:/usr/share/nginx/html
+-v /root/nginx/logs:/var/log/nginx
+-itd nginx
+```
+
 ### mysql 搭建练习
 - 搭建Mysql 设置管理密码和添加一个管理员账号，MYSQL_USER 默认管理员权限
-```bash
+```docker
 docker run --name my1
 -p 3306:3306
 -e MYSQL_ROOT_PASSWORD=管理员密码(必选)
@@ -209,7 +219,6 @@ docker run --name my1
 -e MYSQL_PASSWORD=新用户密码(可选)
 -itd mysql:5.7.31
 ```
-
 
 
 
