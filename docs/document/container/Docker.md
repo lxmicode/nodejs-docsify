@@ -4,7 +4,7 @@
 
 ## 设置开机启动
 ###  `centos`
-```bash
+```shell
 $ sudo systemctl enable docke
 ```
 
@@ -12,33 +12,33 @@ $ sudo systemctl enable docke
 ## 镜像命令
 ###  `search 查询镜像` 
 - 查询镜像
-```bash
+```shell
 sudo docker search 镜像名
 sudo docker search centos
 ```
 
 ### `pull 拉取镜像` 
 - 拉取镜像
-```bash
+```shell
 docker pull 镜像名:版本(默认最新)
 ```
 
 ### `image 查看镜像` 
 - 查看所有镜像
-```bash
+```shell
 docker image
 ```
 
 ### `run 创建并运行` 
 - 创建并运行容器
-```bash
+```shell
 sudo docker run 镜像名:版本(默认最新)
 sudo docker run centos:latest
 ```
 
 ###   `commit 提交` 
 - 提交镜像
-```bash
+```shell
 docker commit 镜像ID/镜像名称:版本
 ```
 
@@ -46,7 +46,7 @@ docker commit 镜像ID/镜像名称:版本
 ###  `ps` 
 - 查看当前容器
 - -a 查看历史
-```bash
+```shell
 sudo docker ps
 sudo docker ps -a
 ```
@@ -63,7 +63,7 @@ sudo docker ps -a
 ###  `update 更新` 
 更新容器
 - --restart docker启动容器启动
-```bash
+```shell
 $ docker update --restart=always <CONTAINER ID>
 ```
 
@@ -82,7 +82,7 @@ $ docker update --restart=always <CONTAINER ID>
 
 - 例子
 创建一个容器卷,并创建一个nginx容器挂载html页面
-```bash
+```shell
 sudo docker volume create test_vol
 sudo docker run -d --mount src=test_vol,dst=/usr/share/nginx/html nginx
 ```
@@ -91,13 +91,13 @@ sudo docker run -d --mount src=test_vol,dst=/usr/share/nginx/html nginx
 - 例子
 后台创建并启动一个叫web的nginx容器，并设置一个容器卷
 /var/log/nginx 对应主机  /root/nginx/logs 目录，用于查看nginx日志
-```bash
+```shell
 sudo docker run  -d  -v /root/nginx/logs:/var/log/nginx  --name web nginx
 ```
 
 - 例子
 nginx中创建2个目录，至于主机目录随机，通过inspect 命令查看Mounts配置
-```bash
+```shell
 sudo docker run  -d   volume["containerDir1","containerDir2"]  --name web nginx
 ```
 
@@ -108,7 +108,7 @@ sudo docker run  -d   volume["containerDir1","containerDir2"]  --name web nginx
 
 - 例子
 创建voldatas数据卷容器，app1引用达到共享目的
-```bash
+```shell
 $ docker run -name voldatas -v 主机目录:容器目录 -itd  centos
 $ docker run --volumes-from voldatas  -name app1 -itd   centos
 ```
@@ -117,22 +117,22 @@ $ docker run --volumes-from voldatas  -name app1 -itd   centos
 默认容器之间无法通讯，需指定端口 -p/-P参数
 ###  `-p`
 - 指定对外端口
-```bash
+```shell
 sudo docker run -p 本机端口:容器端口 镜像名
 ```
 - 例子，后台创建并启动一个叫web的nginx容器，对外端口80，内部端口80
-```bash
+```shell
 sudo docker run  -d -p 80:80 --name web nginx
 ```
 
 ###  `--link 容器间连接` 
 - 容器之间交互,两者之间创建了一个安全隧道，避免端口暴露
-```bash
+```shell
 sudo docker run  --link 容器名:连接名
 ```
 - 例子
 创建一个alpine容器，安装mysql客户端链接DB容器
-```bash
+```shell
 ##创建DB容器
 sudo docker container run -d --name db -e MYSQL_ROOT_PASSWORD=123456 mysql:5.7
 $ sudo docker container run -itd --name testlink --link db:db_link alpine
@@ -146,7 +146,7 @@ $ mysql -h db_link -uroot -p 123456
 
 ###  `port 端口信息` 
 - 查看容易映射端口信息
-```bash
+```shell
 sudo docker port 镜像id/别名
 ```
 
@@ -156,7 +156,7 @@ Compose 是用于定义和运行多容器 Docker 应用程序的工具
 
 ### `up 启动`
 默认启动docker-compose.yml
-```bash
+```shell
 sudo docker-compose up
 ## -f 指定配置文件
 sudo docker-compose up  -f 文件名
@@ -200,7 +200,7 @@ $ sudo docker rm -f web
 ```
 
 3. 创建并启动Nginx
-```bash
+```shell
 $ sudo docker run --name web \
  -p 80:80 \
  -v /root/nginx/config/nginx.conf:/etc/nginx/nginx.conf \
@@ -211,7 +211,7 @@ $ sudo docker run --name web \
 
 ### mysql 搭建练习
 - 搭建Mysql 设置管理密码和添加一个管理员账号，MYSQL_USER 默认管理员权限
-```bash
+```shell
 $ docker run --name my1 \
  -p 3306:3306 \
  -e MYSQL_ROOT_PASSWORD=管理员密码(必选) \
