@@ -199,16 +199,6 @@ $ sudo docker cp web:/etc/nginx/nginx.conf /root/nginx/config/nginx.conf
 $ sudo docker rm -f web
 ```
 
-3. 创建并启动Nginx
-```shell
-$ sudo docker run --name web
--p 80:80
--v /root/nginx/config/nginx.conf:/etc/nginx/nginx.conf
--v /root/nginx/html:/usr/share/nginx/html
--v /root/nginx/logs:/var/log/nginx
--itd nginx
-```
-
 ### mysql 搭建练习
 - 搭建Mysql 设置管理密码和添加一个管理员账号，MYSQL_USER 默认管理员权限
 ```shell
