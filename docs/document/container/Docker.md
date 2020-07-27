@@ -212,7 +212,6 @@ $ sudo docker run --name web\
 
 ### mysql 搭建练习
 - 搭建Mysql 设置管理密码和添加一个管理员账号，MYSQL_USER 默认管理员权限
-
 ```shell
 docker run --name my1
 -p 3306:3306
