@@ -202,12 +202,12 @@ $ sudo docker rm -f web
 
 3. 创建并启动Nginx
 ```shell
-$ sudo docker run --name web\
--p 80:80 \
--v /root/nginx/config/nginx.conf:/etc/nginx/nginx.conf \
--v /root/nginx/html:/usr/share/nginx/html \
--v /root/nginx/logs:/var/log/nginx \
--itd nginx \;
+$ sudo docker run --name web
+-p 80:80
+-v /root/nginx/config/nginx.conf:/etc/nginx/nginx.conf
+-v /root/nginx/html:/usr/share/nginx/html
+-v /root/nginx/logs:/var/log/nginx
+-itd nginx
 ```
 
 ### mysql 搭建练习
@@ -220,12 +220,6 @@ docker run --name my1
 -e MYSQL_PASSWORD=新用户密码(可选)
 -itd mysql:5.7.31
 ```
-
-
-
-
-
-
 
 
 
