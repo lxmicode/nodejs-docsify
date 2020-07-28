@@ -16,7 +16,7 @@ mount -o loop /media/CentOS-6.10-x86_64-bin-DVD2.iso /mnt/dvd2
 2. 拷贝并合并文件
 ```shell
 ##拷贝dvd1镜像的内容到/mnt/dvd
-cp  -r  /mnt/dvd1  /mnt/dvd
+cp  -r  /mnt/dvd1/*  /mnt/dvd
 ##将第dvd2的Packages目录下的rpm文件合并dvd
 cp  -r  /mnt/dvd2/Packages/*.rpm  /mnt/dvd/Packages/
 ```
