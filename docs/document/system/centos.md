@@ -57,6 +57,16 @@ $ sudo yum repolist all
 $ sudo yum clean all
 $ sudo yum upgrade
 ```
+8. 遇到问题error: cannot open Packages database in /var/lib/rpm
+```shell
+##原因是RPM数据库被破坏
+##重建数据库后恢复正常：
+cd /var/lib/rpm/
+for i in `ls | grep 'db.'`;do mv $i $i.bak;done
+rpm --rebuilddb
+yum clean all
+```
+>https://blog.51cto.com/alsww/1742134
 
 ## 引用和声明
 - 代码和例子来源网上收集整理
