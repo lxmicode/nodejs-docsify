@@ -191,7 +191,7 @@ Alpine Linux Docker 镜像基于 Alpine Linux 操作系统，后者是一个面�
 
 ## 练习
 ### 使用 compose 多容器通讯
-- 创建yaml文件,重点在于links参数，创建后web1可以通过 http://web2 进行操作
+- 创建yaml文件,重点在于links参数，创建后web1可以通过 web2代替IP操作（es: http://web2）
 ```yaml
 version: '3.8'
 services:
