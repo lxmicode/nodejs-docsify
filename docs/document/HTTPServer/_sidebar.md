@@ -1,3 +1,3 @@
 - HTTP服务
   - [apache](document/HTTPServer/apache.md)
-  - [httpd](document/HTTPServer/httpd.md)
+  - [nginx](document/HTTPServer/nginx.md)
