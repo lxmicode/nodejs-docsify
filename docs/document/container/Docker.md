@@ -156,6 +156,7 @@ Compose 是用于定义和运行多容器 Docker 应用程序的工具
 
 ### `up 启动`
 默认启动docker-compose.yml
+
 ```docker
 sudo docker-compose up
 ## -f 指定配置文件
