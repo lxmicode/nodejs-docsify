@@ -184,49 +184,42 @@ services:
 ### alpine
 Alpine Linux Docker 镜像基于 Alpine Linux 操作系统，后者是一个面向安全的轻型 Linux 发行版。Alpine Linux Docker 镜像也继承了 Alpine Linux 发行版的这些优势。相比于其他 Docker 镜像，它的容量非常小，仅仅只有 5M，且拥有非常友好的包管理器。
 
+- nginx:alpine
+- redis:alpine
+
 
 ## 练习
-### 使用 compose 配置 nginx
-1. 宿主机目录准备
-	1.1 /root/nginx/config/nginx.conf nginx配置文件
-	1.2 /root/nginx/html html目录
-	1.3/root/nginx/logs  日志目录
-
-2. 获取nginx.conf配置文件 到  /root/nginx/config/nginx.conf
-```shell
-$ sudo docker run --name web -d nginx
-$ sudo docker cp web:/etc/nginx/nginx.conf /root/nginx/config/nginx.conf
-$ sudo docker rm -f web
-```
-
-3. 创建compose文件
+### 使用 compose 多容器通讯
+- 创建yaml文件,重点在于links参数，创建后web1可以通过 http://web2 进行操作
 ```yaml
-version: "3"
+version: '3.8'
 services:
-  web:
-    image: nginx
-    container_name: web
-    porst:
+  ##web nginx1服务器
+  web1:
+    image: nginx:alpine
+    container_name: nginx1
+    ports:
       - 80:80
-    volumes:
-      - /root/nginx/config/nginx.conf:/etc/nginx/nginx.conf
-      - /root/nginx/html:/usr/share/nginx/html
-      - /root/nginx/logs:/var/log/nginx
-```
-4. compose 启动
-```shell
-$ sudo docker-compose up
+    links:
+      - web2 ##重点，名字为配置中的服务器名
+
+  ##web nginx2服务器
+  web2:
+    image: nginx:alpine
+    container_name: nginx2
+    ports:
+      - 80:80
 ```
 
 ### mysql 搭建练习
 - 搭建Mysql 设置管理密码和添加一个管理员账号，MYSQL_USER 默认管理员权限
 ```shell
-docker run --name my1
--p 3306:3306
--e MYSQL_ROOT_PASSWORD=管理员密码(必选)
--e MYSQL_USER=新用户(可选)
--e MYSQL_PASSWORD=新用户密码(可选)
--itd mysql:5.7.31
+docker run --name db \
+ -p 3306:3306 \
+ -e MYSQL_ROOT_PASSWORD=管理员密码(必选) \
+ -e MYSQL_USER=新用户(可选) \
+ -e MYSQL_PASSWORD=新用户密码(可选) \
+ -itd mysql:5.7.31 \
 ```
 
 
