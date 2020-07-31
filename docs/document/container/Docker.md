@@ -202,7 +202,7 @@ services:
     ports:
       - 80:80
     links:
-      - web2 ##重点，名字为配置中的服务器名
+      - web2 ##重点，名字为配置中的服务名(services:web2)
 
   ##web nginx2服务器
   web2:
