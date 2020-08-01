@@ -190,7 +190,7 @@ Alpine Linux Docker 镜像基于 Alpine Linux 操作系统，后者是一个面�
 
 
 ## 练习
-### 使用 compose 多容器通讯
+### 使用 compose link通讯(同yml)
 - 创建yaml文件,重点在于links参数，创建后web1可以通过 web2代替IP操作（es: http://web2）
 ```yaml
 version: '3.8'
@@ -212,6 +212,41 @@ services:
       - 80:80
 ```
 
+### 使用 compose network通讯(不同yml)
+- 创建yml1文件
+```yaml
+version: '3.8'
+services:
+  web:
+    image: nginx:alpine
+    container_name: nginx
+    ports:
+      - 80:80
+    networks:
+      - web-net ##重点，设置服务使用的网络
+
+networks:
+  web-net: ##网络名，不存在就创建
+
+```
+
+- 创建yml2文件，然后yml2桥接yml1,桥接后可以使用服务名web进行操作
+```yaml
+version: '3.8'
+services:
+  web2:
+    image: nginx:alpine
+    container_name: nginx2
+    ports:
+      - 80:80
+    networks:
+      - web_web-net (重点)
+
+networks:
+  web_web-net: ##yml中创建的网络，可通过 docker network ps查看
+    external: true ## 使用已存在网络
+```
+
 ### mysql 搭建练习
 - 搭建Mysql 设置管理密码和添加一个管理员账号，MYSQL_USER 默认管理员权限
 ```shell
@@ -222,6 +257,8 @@ docker run --name db \
  -e MYSQL_PASSWORD=新用户密码(可选) \
  -itd mysql:5.7.31 \
 ```
+
+
 
 
 
