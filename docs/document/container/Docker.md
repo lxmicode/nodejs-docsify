@@ -212,6 +212,34 @@ services:
       - 80:80
 ```
 
+### 使用 compose network通讯(同yml)
+- 创建yaml文件,重点在于links参数，创建后web1可以通过 web2代替IP操作（es: http://web2）
+```yaml
+version: '3.8'
+services:
+  ##web nginx1服务器
+  web1:
+    image: nginx:alpine
+    container_name: nginx1
+    ports:
+      - 80:80
+    networks:
+      - web-net ##网络名
+
+  ##web nginx2服务器
+  web2:
+    image: nginx:alpine
+    container_name: nginx2
+    ports:
+      - 80:80
+    networks:
+      - web-net
+      
+##创建网络 web-net网络，默认驱动：bridge      
+networks:
+ web-net:
+```
+
 ### 使用 compose network通讯(不同yml)
 - 创建yml1文件
 ```yaml
@@ -223,10 +251,10 @@ services:
     ports:
       - 80:80
     networks:
-      - web-net ##重点，设置服务使用的网络
+      - web-net ##设置网络
 
 networks:
-  web-net: ##网络名，不存在就创建
+  web-net: ##网络名
 
 ```
 
