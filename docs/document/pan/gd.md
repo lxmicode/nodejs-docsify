@@ -38,6 +38,12 @@ curl -F "url=[YOUR_WEBSITE]/api/gdurl/tgbot" 'https://api.telegram.org/bot[YOUR_
 
 ## 参考
 > [gd-utils](https://github.com/iwestlin/gd-utils)
+
 > [gd-utils-docker](https://github.com/gdtool/gd-utils-docker)
+
 > [搬山之术](https://tech.he-sb.top/posts/usage-of-gclone/)
->  [AutoRclone](https://tech.he-sb.top/posts/usage-of-gclone/)
+
+> [AutoRclone](https://tech.he-sb.top/posts/usage-of-gclone/)
+
+## 联系和讨论
+- TG讨论群 https://t.me/gd_utils 看gd_utils ID没人使用，借用一下，`并不是官方群`，如果gd_utils原大佬想使用，可以联系。
