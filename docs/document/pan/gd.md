@@ -14,7 +14,7 @@
 docker pull gdtool/gd-utils-docker
 #启动镜像 
 ## 23333端口: gd-utils机器人，这里为了方便直接443
-## 4200端口: webshell
+## 4200端口: webshell ,密码:your_self_passsword
 ## 80: 文件管理界面，默认不启动 启动方式 cd / && filebrowser &,账号密码:admin
 sudo docker run --restart=always  -d \
  -e USERPWD="your_self_passsword" \
