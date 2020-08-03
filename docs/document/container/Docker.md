@@ -174,7 +174,7 @@ services:
   web:
     image: nginx #镜像名
     container_name: web #容器名称
-    porst: #端口
+    ports: #端口
       - 80:80
     volumes: ##容器卷
       - /root/nginx/config/nginx.conf:/etc/nginx/nginx.conf
