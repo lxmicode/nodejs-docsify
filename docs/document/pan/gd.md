@@ -7,20 +7,36 @@
 - 准备gd-utils 中的config.js 文件，用于覆盖docker中的对应文件
 (可选，可以在docker中直接修改配置)
 - 准备SA文件
+```bash
+##安装环境
+sudo yum install -y git python3 python3-pip 
+#拉取AutoRclone项目并进入项目文件夹
+git clone https://github.com/xyou365/AutoRclone && cd AutoRclone
+##启用服务
+sudo python3 gen_sa_accounts.py --enable-services 项目名
+##为Project生成SA
+sudo python3 gen_sa_accounts.py --create-sas quickstart-rclon-1596768970630
+##下载指定Project中 SA 的授权文件，稍等片刻 
+sudo python3 gen_sa_accounts.py --download-keys quickstart-rclon-1596768970630
+##提取json文件到email文件
+cat accounts/*.json | grep "client_email" | awk '{print $2}'| tr -d ',"' | sed '0~100G' > email.txt
+##linux 查看文件夹中的个数
+sudo ls -l | grep "^-" | wc
+```
 - 安装docker环境参考 [docker安装](https://docs.docker.com/engine/install/centos/)
 - 安装 gd-utils-docker 镜像
 ```bash
 #安装镜像
 docker pull gdtool/gd-utils-docker
 #启动镜像 
-## 23333端口: gd-utils机器人，这里为了方便直接443
+## 23333端口: gd-utils机器人，这里为了方便直接80(教程套了CF）
 ## 4200端口: webshell ,密码:your_self_passsword
-## 80: 文件管理界面，默认不启动 启动方式 cd / && filebrowser &,账号密码:admin
+## 8080: 文件管理界面，默认不启动 启动方式 cd / && filebrowser &,账号密码:admin
 sudo docker run --restart=always  -d \
  -e USERPWD="your_self_passsword" \
  -p 4200:4200 \
- -p 80:80 \
- -p 443:23333 \
+ -p 8080:80 \
+ -p 80:23333 \
  --name gd-utils \
  gdtool/gd-utils-docker
  ## 复制config.js 到镜像（或进去gd-utils容器直接修改配置文件）
@@ -41,6 +57,6 @@ curl -F "url=[YOUR_WEBSITE]/api/gdurl/tgbot" 'https://api.telegram.org/bot[YOUR_
 > [gd-utils-docker](https://github.com/gdtool/gd-utils-docker)  
 > [搬山之术](https://tech.he-sb.top/posts/usage-of-gclone/)  
 > [AutoRclone](https://tech.he-sb.top/posts/usage-of-gclone/)  
-
+> [blog.rneko.com](https://blog.rneko.com/archives/27/)  
 ## 联系和讨论
 - TG讨论群 https://t.me/gd_utils 看gd_utils ID没人使用，借用一下，`并不是官方群`，如果gd_utils原大佬想使用，可以联系。
