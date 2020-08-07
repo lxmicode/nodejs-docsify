@@ -15,9 +15,9 @@ git clone https://github.com/xyou365/AutoRclone && cd AutoRclone
 ##启用服务
 sudo python3 gen_sa_accounts.py --enable-services 项目名
 ##为Project生成SA
-sudo python3 gen_sa_accounts.py --create-sas quickstart-rclon-1596768970630
+sudo python3 gen_sa_accounts.py --create-sas 项目名
 ##下载指定Project中 SA 的授权文件，稍等片刻 
-sudo python3 gen_sa_accounts.py --download-keys quickstart-rclon-1596768970630
+sudo python3 gen_sa_accounts.py --download-keys 项目名
 ##提取json文件到email文件
 cat accounts/*.json | grep "client_email" | awk '{print $2}'| tr -d ',"' | sed '0~100G' > email.txt
 ##linux 查看文件夹中的个数
