@@ -13,11 +13,11 @@ sudo yum install -y git python3 python3-pip
 #拉取AutoRclone项目并进入项目文件夹
 git clone https://github.com/xyou365/AutoRclone && cd AutoRclone
 ##启用服务
-sudo python3 gen_sa_accounts.py --enable-services 项目名
+sudo python3 gen_sa_accounts.py --enable-services gcp项目名
 ##为Project生成SA
-sudo python3 gen_sa_accounts.py --create-sas 项目名
+sudo python3 gen_sa_accounts.py --create-sas gcp项目名
 ##下载指定Project中 SA 的授权文件，稍等片刻 
-sudo python3 gen_sa_accounts.py --download-keys 项目名
+sudo python3 gen_sa_accounts.py --download-keys gcp项目名
 ##提取json文件到email文件
 cat accounts/*.json | grep "client_email" | awk '{print $2}'| tr -d ',"' | sed '0~100G' > email.txt
 ##linux 查看文件夹中的个数
@@ -49,7 +49,84 @@ sudo docker run --restart=always  -d \
 curl -F "url=[YOUR_WEBSITE]/api/gdurl/tgbot" 'https://api.telegram.org/bot[YOUR_BOT_TOKEN]/setWebhook'
 ```
 
-### aria2离线+自动上传
+## tg+aria2+rclone上传(见参考p3terx)
+### aria2-pro安装
+- 文件准备
+ rclone.conf: rclone配置文件（或启动后容器后修改）
+ script.conf: 针对rclone脚本，主要配置rclone使用盘和上传路径(可以从官方git复制文件修改)
+ tele-aria2-conf.json: tg电报机器人配置
+ ```json
+ {
+  "aria2-server": "ws://aria2:6800/jsonrpc",
+  "aria2-key": "aria2password",
+  "bot-key": "机器人token",
+  "user-id": "tg使用这ID，可以通过发信息给自己机器人，调用接口https://api.telegram.org/bot[Tocken]/getUpdates 查询",
+  "max-index": 10
+}
+```
+- 拉取镜像
+```bash
+$ sudo docker pull p3terx/aria2-pro
+```
+### tg-aria2 安装
+- 拉取镜像
+```bash
+$ sudo docker pull p3terx/tele-aria2
+```
+- 编写compose
+```yml
+version: "3.8"
+services:
+  ## aria2 客户端
+  aria2:
+    image: p3terx/aria2-pro
+    container_name: aria2
+    restart: unless-stopped
+    environment:
+      PUID: root
+      PGID: root
+      RPC_SECRET: aria2password
+      RPC_PORT: 6800
+      LISTEN_PORT: 6888
+      SPECIAL_MODE: rclone
+#不需要对外
+#    ports: 
+#      - 6800:6800
+#      - 6888:6888
+    volumes:
+      - "/root/myConfig/docker/aria2/config:/config"
+      - "/root/myConfig/docker/aria2/downloads:/downloads"
+
+    networks:
+      - tg-net
+
+  ## tg aria2机器人配置
+  tg-aria2:
+    image: p3terx/tele-aria2
+    container_name: tg-aria2
+    volumes:
+      - "/root/myConfig/docker/aria2/tele-aria2-conf.json:/config.json"
+    environment:
+      SPECIAL_MODE: rclone
+    networks:
+      - tg-net
+
+networks:
+  ##自定义网络
+  tg-net:
+  ##使用默认网络，桥接宿主机，实现网络
+  default:
+    external:
+      name: bridge
+```
+- 覆盖配置启动
+```bash
+$ \cp rclone.conf /root/myConfig/docker/aria2/config
+$ \cp script.conf /root/myConfig/docker/aria2/config
+$ cp tele-aria2-conf.json /root/myConfig/docker/aria2
+$ sudo docker-compose up -d
+```
+
 
 
 ## 参考
@@ -58,5 +135,6 @@ curl -F "url=[YOUR_WEBSITE]/api/gdurl/tgbot" 'https://api.telegram.org/bot[YOUR_
 > [搬山之术](https://tech.he-sb.top/posts/usage-of-gclone/)  
 > [AutoRclone](https://tech.he-sb.top/posts/usage-of-gclone/)  
 > [blog.rneko.com](https://blog.rneko.com/archives/27/)  
+> [p3terx](https://p3terx.com/archives/docker-aria2-pro.html)  
 ## 联系和讨论
 - TG讨论群 https://t.me/gd_utils 看gd_utils ID没人使用，借用一下，`并不是官方群`，如果gd_utils原大佬想使用，可以联系。
