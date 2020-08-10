@@ -51,10 +51,10 @@ curl -F "url=[YOUR_WEBSITE]/api/gdurl/tgbot" 'https://api.telegram.org/bot[YOUR_
 
 ## tg+aria2+rclone上传(见参考p3terx)
 ### aria2-pro安装
-- 文件准备
- rclone.conf: rclone配置文件（或启动后容器后修改）
- script.conf: 针对rclone脚本，主要配置rclone使用盘和上传路径(可以从官方git复制文件修改)
- tele-aria2-conf.json: tg电报机器人配置
+- 文件准备   
+ rclone.conf: rclone配置文件（或启动后容器后修改）   
+ script.conf: 针对rclone脚本，主要配置rclone使用盘和上传路径(可以从官方git复制文件修改)   
+ tele-aria2-conf.json: tg电报机器人配置   
  ```json
  {
   "aria2-server": "ws://aria2:6800/jsonrpc",
