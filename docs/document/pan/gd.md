@@ -3,10 +3,10 @@
 
 
 ### gd-utils docker版本
-- 准备域名或公网IP，确保https能正常使用
-- 准备gd-utils 中的config.js 文件，用于覆盖docker中的对应文件
+- 准备域名或公网IP，确保https能正常使用   
+- 准备gd-utils 中的config.js 文件，用于覆盖docker中的对应文件   
 (可选，可以在docker中直接修改配置)
-- 准备SA文件
+- 准备SA文件   
 ```bash
 ##安装环境
 sudo yum install -y git python3 python3-pip 
