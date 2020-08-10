@@ -73,7 +73,7 @@ $ sudo docker pull p3terx/aria2-pro
 ```bash
 $ sudo docker pull p3terx/tele-aria2
 ```
-- 编写compose
+## 编写compose
 ```yml
 version: "3.8"
 services:
