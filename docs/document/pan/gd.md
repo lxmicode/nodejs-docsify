@@ -118,7 +118,6 @@ networks:
   default:
     external:
       name: bridge
-      
 ```
 
 - 覆盖配置启动
