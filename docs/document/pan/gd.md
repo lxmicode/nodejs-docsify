@@ -99,7 +99,6 @@ services:
     volumes:
       - "/root/myConfig/docker/aria2/config:/config"
       - "/root/myConfig/docker/aria2/downloads:/downloads"
-
     networks:
       - tg-net
 
