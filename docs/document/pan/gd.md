@@ -112,12 +112,13 @@ services:
       - tg-net
 
 networks:
-  ##自定义网络
+  ##自定义网络,如果没有请先建立
   tg-net:
   ##使用默认网络，桥接宿主机，实现网络
   default:
     external:
       name: bridge
+      
 ```
 
 - 覆盖配置启动
