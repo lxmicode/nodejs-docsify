@@ -69,11 +69,14 @@ curl -F "url=[YOUR_WEBSITE]/api/gdurl/tgbot" 'https://api.telegram.org/bot[YOUR_
 $ sudo docker pull p3terx/aria2-pro
 ```
 ### tg-aria2 安装
+
 - 拉取镜像
 ```bash
 $ sudo docker pull p3terx/tele-aria2
 ```
+
 ### 编写compose/启动
+
 ```yml
 version: "3.8"
 services:
@@ -120,7 +123,8 @@ networks:
       name: bridge
 ```
 
-- 覆盖配置启动
+### 覆盖配置启动
+
 ```bash
 $ \cp rclone.conf /root/myConfig/docker/aria2/config
 $ \cp script.conf /root/myConfig/docker/aria2/config
