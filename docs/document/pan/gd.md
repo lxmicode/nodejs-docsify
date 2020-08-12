@@ -12,6 +12,8 @@
 sudo yum install -y git python3 python3-pip 
 #拉取AutoRclone项目并进入项目文件夹
 git clone https://github.com/xyou365/AutoRclone && cd AutoRclone
+## 列出所有项目
+python3 gen_sa_accounts.py --list-projects
 ##启用服务
 sudo python3 gen_sa_accounts.py --enable-services gcp项目名
 ##为Project生成SA
