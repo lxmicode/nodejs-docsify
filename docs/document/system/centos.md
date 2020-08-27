@@ -26,6 +26,12 @@ passwd -u <用户账号名>
 passwd -d <用户账号名>
 ```
 
+- cannot open /etc/passwd 问题解决
+```bash
+chattr -i /etc/passwd
+chattr -i /etc/shadow
+```
+
 ###  `ISO做本地源`
 - 镜像版本:CentOS-6.10-x86_64
 - 需下DVD1和DVD2 2个合并才能完整
