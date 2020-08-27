@@ -12,6 +12,12 @@ systemctl stop httpd.service
 systemctl reload httpd.service
 # 检查服务状态、配置等信息
 systemctl status httpd.service
+# 激活服务并在开机时启用
+systemctl is-active httpd.service
+# 开机时启用
+systemctl enable httpd.service
+# 禁用服务
+systemctl disable httpd.service
 ```
 
 ### 用户管理
