@@ -1,4 +1,19 @@
 ## CenteOS 命令和问题
+### 服务管理
+- Linux中如何启动、重启、停止、重载服务以及检查服务（如 httpd.service）状态 
+```bash
+# 启动
+systemctl start httpd.service
+# 重启
+systemctl restart httpd.service
+# 停止
+systemctl stop httpd.service
+# 重载服务
+systemctl reload httpd.service
+# 检查服务状态、配置等信息
+systemctl status httpd.service
+```
+
 ### 用户管理
 
 - 设置用户口令：
