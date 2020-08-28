@@ -51,7 +51,7 @@ sudo docker run --restart=always  -d \
 curl -F "url=[YOUR_WEBSITE]/api/gdurl/tgbot" 'https://api.telegram.org/bot[YOUR_BOT_TOKEN]/setWebhook'
 ```
 
-## tg+aria2+rclone上传(见参考p3terx)
+## tg+aria2+rclone上传(见参考p3terx) `无进度可看，替换`
 ### aria2-pro安装
 - 文件准备   
  rclone.conf: rclone配置文件（或启动后容器后修改）   
@@ -134,6 +134,79 @@ $ sudo docker-compose up -d
 ```
 
 
+## python-aria-mirror-bot(见参考lzzy12) Docker版本带进度条(官方github谷歌翻译加自己调整-滑稽)
+### 克隆项目及配置文件
+```bash
+git clone https://github.com/lzzy12/python-aria-mirror-bot mirror-bot/
+cd mirror-bot
+```
+### 安装python3
+### 安装docker
+### 设置配置文件
+```bash
+# 复制一份配置文件
+cp config_sample.env config.env
+# 删除config.env中的一段代码
+_____REMOVE_THIS_LINE_____=True
+```
+- config.env参数说明
+BOT_TOKEN：您从@BotFather获得的电报机器人令牌   
+GDRIVE_FOLDER_ID：上传到的Google Drive文件夹的文件夹ID。   
+DOWNLOAD_DIR：下载文件应下载到的本地文件夹的路径   
+DOWNLOAD_STATUS_UPDATE_INTERVAL：一小段时间间隔（以秒为单位），之后更新镜像进度消息。（我建议至少保持5秒）   
+OWNER_ID：机器人所有者的电报用户ID（而非用户名）   
+AUTO_DELETE_MESSAGE_DURATION：多少秒后删除信息：设置为-1绝不会自动删除邮件   
+IS_TEAM_DRIVE：（可选）是否团盘，则设置为“ True”，否则为False或保留为空。   
+USE_SERVICE_ACCOUNTS：（可选）是否使用SA帐户，填True/False无知留空，如果填true,在根目录创建accounts然后放入SA json文件。   
+INDEX_URL：（可选），请参阅https://github.com/maple3142/GDIndex/。URL不应包含任何结尾的“ /”   
+TELEGRAM_API：（留空）从 https://my.telegram.org上获得。创建API development tools后获取。   
+TELEGRAM_HASH： （留空）获取方式同TELEGRAM_API
+USER_SESSION_STRING：通过运行下面代码生成的会话字符串：   
+```bash
+# 执行之后，需要输入上面获取的 TELEGRAM_API、TELEGRAM_HASH、加手机号
+python3 generate_string_session.py
+
+#此处可能会遇到一个错误 未找到telegraph模块，或者提示少什么安装什么
+pip3 install telegraph
+```
+注意：您可以通过更改aria.sh中的MAX_CONCURRENT_DOWNLOADS值来限制最大并发下载。默认情况下，它设置为2   
+
+### 获取Google OAuth API凭据文件
+
+- 访问[Google Cloud Console](https://console.developers.google.com/apis/credentials)  
+- 转到“ OAuth同意”标签，填写并保存。
+- 转到“凭据”选项卡，然后单击“创建凭据”->“ OAuth客户端ID”
+- 选择其他并创建。
+- 使用下载按钮下载您的凭据。
+- 将该文件移至mirror-bot的根目录，并将其重命名为凭据。
+- 访问Google API页面
+- 搜索驱动器并启用它（如果已禁用）
+- 最后，运行脚本为Google云端硬盘生成令牌文件（token.pickle）：
+```bash
+pip install google-api-python-client google-auth-httplib2 google-auth-oauthlib
+python3 generate_drive_token.py
+```
+
+### 编译镜像
+- 构建Docker映像：
+```bash
+sudo docker build . -t mirror-bot
+```
+- 运行图像：
+```bash
+sudo docker run --name mirror-bot -itd mirror-bot
+```
+
+### 测试
+- 建议第一次运行镜像，不要后台启动，方便查看日志，排除错误
+```bash
+sudo docker run --name mirror-bot mirror-bot
+```
+- 完成无错误之后再后台启动
+```bash
+sudo docker run --name mirror-bot -itd mirror-bot
+```
+- 测试下载上传，打开tg机器人输入 /help 根据命令操作即可
 
 ## 参考
 > [gd-utils](https://github.com/iwestlin/gd-utils)  
@@ -142,5 +215,6 @@ $ sudo docker-compose up -d
 > [AutoRclone](https://tech.he-sb.top/posts/usage-of-gclone/)  
 > [blog.rneko.com](https://blog.rneko.com/archives/27/)  
 > [p3terx](https://p3terx.com/archives/docker-aria2-pro.html)  
+> [lzzy12](https://github.com/lzzy12/python-aria-mirror-bot/network/members)  
 ## 联系和讨论
 - TG讨论群 https://t.me/gd_utils 看gd_utils ID没人使用，借用一下，`并不是官方群`，如果gd_utils原大佬想使用，可以联系。
