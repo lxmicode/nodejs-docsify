@@ -164,7 +164,7 @@ AUTO_DELETE_MESSAGE_DURATION：多少秒后删除信息：设置为-1绝不会�
 IS_TEAM_DRIVE：（可选）是否团盘，则设置为“ True”，否则为False或保留为空。   
 USE_SERVICE_ACCOUNTS：（可选）是否使用SA帐户，填True/False无知留空，如果填true,在根目录创建accounts然后放入SA json文件。   
 INDEX_URL：（可选），请参阅https://github.com/maple3142/GDIndex/。URL不应包含任何结尾的“ /”   
-TELEGRAM_API：（留空）从 https://my.telegram.org上获得。创建API development tools后获取。   
+TELEGRAM_API：（留空）从 https://my.telegram.org上获得。创建API development tools后获取，下面用到。   
 TELEGRAM_HASH： （留空）获取方式同TELEGRAM_API
 USER_SESSION_STRING：通过运行下面代码生成的会话字符串： 
 
@@ -172,7 +172,7 @@ USER_SESSION_STRING：通过运行下面代码生成的会话字符串：
 # 建议安装下环境，可避免下面的错
 cd mirror-bot
 pip3  install -r requirements.txt
-# 执行之后，需要输入上面获取的 TELEGRAM_API、TELEGRAM_HASH、加手机号
+# 执行下面代码之后，需要准备上面获取的 TELEGRAM_API、TELEGRAM_HASH、TG的手机号
 python3 generate_string_session.py
 #此处可能会遇到一个错误 未找到telegraph模块，或者提示少什么安装什么
 pip3 install telegraph
