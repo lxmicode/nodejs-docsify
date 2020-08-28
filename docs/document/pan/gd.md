@@ -158,7 +158,7 @@ _____REMOVE_THIS_LINE_____=True
 BOT_TOKEN：您从@BotFather获得的电报机器人令牌   
 GDRIVE_FOLDER_ID：上传到的Google Drive文件夹的文件夹ID。   
 DOWNLOAD_DIR：下载文件应下载到的本地文件夹的路径   
-DOWNLOAD_STATUS_UPDATE_INTERVAL：一小段时间间隔（以秒为单位），之后更新镜像进度消息。（我建议至少保持5秒）   
+DOWNLOAD_STATUS_UPDATE_INTERVAL：多少秒更新进度消息。（我建议至少保持5秒）   
 OWNER_ID：机器人所有者的电报用户ID（而非用户名）   
 AUTO_DELETE_MESSAGE_DURATION：多少秒后删除信息：设置为-1绝不会自动删除邮件   
 IS_TEAM_DRIVE：（可选）是否团盘，则设置为“ True”，否则为False或保留为空。   
@@ -193,11 +193,11 @@ python3 generate_drive_token.py
 ```
 
 ### 编译镜像
-- 构建Docker映像：
+- 构建Docker镜像：
 ```bash
 sudo docker build . -t mirror-bot
 ```
-- 运行图像：
+- 运行镜像：
 ```bash
 sudo docker run --name mirror-bot -itd mirror-bot
 ```
