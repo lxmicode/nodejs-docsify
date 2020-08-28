@@ -51,7 +51,8 @@ sudo docker run --restart=always  -d \
 curl -F "url=[YOUR_WEBSITE]/api/gdurl/tgbot" 'https://api.telegram.org/bot[YOUR_BOT_TOKEN]/setWebhook'
 ```
 
-## tg+aria2+rclone上传(见参考p3terx) `无进度可看，替换`
+## docker-aria2-pro
+- 暂不推荐使用，无下载进度，更换python-aria-mirror-bot版本
 ### aria2-pro安装
 - 文件准备   
  rclone.conf: rclone配置文件（或启动后容器后修改）   
@@ -134,14 +135,18 @@ $ sudo docker-compose up -d
 ```
 
 
-## python-aria-mirror-bot(见参考lzzy12) Docker版本带进度条(官方github谷歌翻译加自己调整-滑稽)
+## python-aria-mirror-bot(见参考lzzy12) 
+- Docker版本带进度条(官方github谷歌翻译加自己调整-滑稽)
+
 ### 克隆项目及配置文件
 ```bash
 git clone https://github.com/lzzy12/python-aria-mirror-bot mirror-bot/
 cd mirror-bot
 ```
 ### 安装python3
+
 ### 安装docker
+
 ### 设置配置文件
 ```bash
 # 复制一份配置文件
