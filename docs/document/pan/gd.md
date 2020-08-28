@@ -149,7 +149,7 @@ cp config_sample.env config.env
 # 删除config.env中的一段代码
 _____REMOVE_THIS_LINE_____=True
 ```
-- config.env参数说明
+- config.env参数说明   
 BOT_TOKEN：您从@BotFather获得的电报机器人令牌   
 GDRIVE_FOLDER_ID：上传到的Google Drive文件夹的文件夹ID。   
 DOWNLOAD_DIR：下载文件应下载到的本地文件夹的路径   
