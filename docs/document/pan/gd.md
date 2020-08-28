@@ -166,14 +166,15 @@ USE_SERVICE_ACCOUNTS：（可选）是否使用SA帐户，填True/False无知留
 INDEX_URL：（可选），请参阅https://github.com/maple3142/GDIndex/。URL不应包含任何结尾的“ /”   
 TELEGRAM_API：（留空）从 https://my.telegram.org上获得。创建API development tools后获取。   
 TELEGRAM_HASH： （留空）获取方式同TELEGRAM_API
-USER_SESSION_STRING：通过运行下面代码生成的会话字符串：   
+USER_SESSION_STRING：通过运行下面代码生成的会话字符串： 
+
 ```bash
 # 执行之后，需要输入上面获取的 TELEGRAM_API、TELEGRAM_HASH、加手机号
 python3 generate_string_session.py
-
 #此处可能会遇到一个错误 未找到telegraph模块，或者提示少什么安装什么
 pip3 install telegraph
 ```
+
 注意：您可以通过更改aria.sh中的MAX_CONCURRENT_DOWNLOADS值来限制最大并发下载。默认情况下，它设置为2   
 
 ### 获取Google OAuth API凭据文件
