@@ -164,7 +164,7 @@ AUTO_DELETE_MESSAGE_DURATION：多少秒后删除信息：设置为-1绝不会�
 IS_TEAM_DRIVE：（可选）是否团盘，则设置为“ True”，否则为False或保留为空。   
 USE_SERVICE_ACCOUNTS：（可选）是否使用SA帐户，填True/False无知留空，如果填true,在根目录创建accounts然后放入SA json文件。   
 INDEX_URL：（可选），请参阅https://github.com/maple3142/GDIndex/。URL不应包含任何结尾的“ /”   
-TELEGRAM_API：（留空）从 https://my.telegram.org上获得。使用自己TG号手机登记、创建API development tools后获取，下面用到。   
+TELEGRAM_API：（留空）从 https://my.telegram.org上获得。使用自己TG号手机登记、创建API development tools，选web后获取，下面用到。   
 TELEGRAM_HASH： （留空）获取方式同TELEGRAM_API
 USER_SESSION_STRING：通过运行下面代码生成的会话字符串： 
 
