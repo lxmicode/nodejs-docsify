@@ -144,8 +144,15 @@ git clone https://github.com/lzzy12/python-aria-mirror-bot mirror-bot/
 cd mirror-bot
 ```
 ### 安装python3
+```bash
+sudo yum install -y python3
+# 安装相关环境
+cd mirror-bot
+pip3  install -r requirements.txt
+```
 
 ### 安装docker
+- 查看官方安装文档 [docker](https://docs.docker.com/engine/install/centos/)
 
 ### 设置配置文件
 ```bash
@@ -169,9 +176,6 @@ TELEGRAM_HASH： （留空）获取方式同TELEGRAM_API
 USER_SESSION_STRING：通过运行下面代码生成的会话字符串： 
 
 ```bash
-# 建议安装下环境，可避免下面的错
-cd mirror-bot
-pip3  install -r requirements.txt
 # 执行下面代码之后，需要准备上面获取的 TELEGRAM_API、TELEGRAM_HASH、TG的手机号
 python3 generate_string_session.py
 #此处可能会遇到一个错误 未找到telegraph模块，或者提示少什么安装什么
