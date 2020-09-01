@@ -196,7 +196,7 @@ pip3 install telegraph
 - 搜索驱动器并启用它（如果已禁用）
 - 最后，运行脚本为Google云端硬盘生成令牌文件（token.pickle）：
 ```bash
-pip install google-api-python-client google-auth-httplib2 google-auth-oauthlib
+pip3 install google-api-python-client google-auth-httplib2 google-auth-oauthlib
 python3 generate_drive_token.py
 ```
 
