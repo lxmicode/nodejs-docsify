@@ -229,5 +229,3 @@ sudo docker run --name mirror-bot -itd mirror-bot
 > [blog.rneko.com](https://blog.rneko.com/archives/27/)  
 > [p3terx](https://p3terx.com/archives/docker-aria2-pro.html)  
 > [lzzy12](https://github.com/lzzy12/python-aria-mirror-bot/network/members)  
-## 联系和讨论
-- TG讨论群 https://t.me/gd_utils 看gd_utils ID没人使用，借用一下，`并不是官方群`，如果gd_utils原大佬想使用，可以联系。
