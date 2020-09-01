@@ -191,7 +191,7 @@ pip3 install telegraph
 - 转到“凭据”选项卡，然后单击“创建凭据”->“ OAuth客户端ID”
 - 选择其他并创建。
 - 使用下载按钮下载您的凭据。
-- 将该文件移至mirror-bot的根目录，并将其重命名为凭据。
+- 将该文件移至mirror-bot的根目录，并将其重命名为 credentials.json。
 - 访问Google API页面
 - 搜索驱动器并启用它（如果已禁用）
 - 最后，运行脚本为Google云端硬盘生成令牌文件（token.pickle）：
@@ -228,4 +228,4 @@ sudo docker run --name mirror-bot -itd mirror-bot
 > [AutoRclone](https://tech.he-sb.top/posts/usage-of-gclone/)  
 > [blog.rneko.com](https://blog.rneko.com/archives/27/)  
 > [p3terx](https://p3terx.com/archives/docker-aria2-pro.html)  
-> [lzzy12](https://github.com/lzzy12/python-aria-mirror-bot/network/members)  
+> [lzzy12](https://github.com/lzzy12/python-aria-mirror-bot)  
