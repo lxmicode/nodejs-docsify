@@ -62,6 +62,14 @@ crontab  -e
 service  crond restart
 ```
 
+- crontab 日志查看
+```bash
+## 从邮件查看详情，执行过程、控制台日志
+less /var/spool/mail/root
+## 日志文件只能查看是否执行
+tail -f /var/log/cron
+```
+
 - 找不到路径问题
 1. 使用export 导入变量
 ```bash
