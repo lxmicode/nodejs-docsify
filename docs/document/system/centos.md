@@ -53,6 +53,27 @@ chattr -i /etc/passwd
 chattr -i /etc/shadow
 ```
 
+### crontab 定时任务
+- 注意：crond $PATH默认:/usr/bin:/bin
+```bash
+##编辑，命令操作与vi基本一致，修改后需重启
+crontab  -e
+##重启
+service  crond restart
+```
+
+- 找不到路径问题
+1. 使用export 导入变量
+```bash
+##导入指定Bin目录
+1 * * * * export PATH=/xx/node/bin:$PATH; +命令
+```
+
+2. 直接指定执行文件
+```bash
+1 * * * * /usr/local/bin/node test.js
+```
+
 ###  `ISO做本地源`
 - 镜像版本:CentOS-6.10-x86_64
 - 需下DVD1和DVD2 2个合并才能完整
