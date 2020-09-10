@@ -82,6 +82,16 @@ tail -f /var/log/cron
 1 * * * * /usr/local/bin/node test.js
 ```
 
+2. 时间/日志时间显示 问题
+```bash
+#设置时区
+cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+#同步时间
+ntpdate pool.ntp.org
+#重启日志服务
+service rsyslog restart
+```
+
 ###  `ISO做本地源`
 - 镜像版本:CentOS-6.10-x86_64
 - 需下DVD1和DVD2 2个合并才能完整
