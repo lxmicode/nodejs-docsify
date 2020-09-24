@@ -1,2 +1,2 @@
-- 网盘
-  - [GD](document/pan/gd.md)
+- 编程语言
+  - [Python](document/PL/python.md)
