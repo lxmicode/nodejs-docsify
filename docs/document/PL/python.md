@@ -20,7 +20,6 @@ print(list)
 ```bash
 dict = {i:i**2 for i in range(10)}
 print(dict) #{1: 1, 2: 4, 3: 9, 4: 16}
-
 ##合并字段数据
 list1 = ['id','name']
 list2 = ['001','jack']
