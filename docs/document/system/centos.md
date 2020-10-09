@@ -86,6 +86,8 @@ tail -f /var/log/cron
 ```bash
 #设置时区
 cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+#设置时区
+timedatectl set-timezone Asia/Shanghai
 #同步时间
 ntpdate pool.ntp.org
 #重启日志服务
