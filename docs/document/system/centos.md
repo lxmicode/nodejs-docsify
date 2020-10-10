@@ -54,7 +54,7 @@ chattr -i /etc/shadow
 ```
 
 ### crontab 定时任务
-- 注意：crond $PATH默认:/usr/bin:/bin
+#### 注意：crond $PATH默认:/usr/bin:/bin
 ```bash
 ##编辑，命令操作与vi基本一致，修改后需重启
 crontab  -e
@@ -62,7 +62,7 @@ crontab  -e
 service  crond restart
 ```
 
-- crontab 日志查看
+#### crontab 日志查看
 ```bash
 ## 从邮件查看详情，执行过程、控制台日志
 less /var/spool/mail/root
@@ -70,7 +70,7 @@ less /var/spool/mail/root
 tail -f /var/log/cron
 ```
 
-- 找不到路径问题
+#### 找不到路径问题
 1. 使用export 导入变量
 ```bash
 ##导入指定Bin目录
@@ -82,7 +82,7 @@ tail -f /var/log/cron
 1 * * * * /usr/local/bin/node test.js
 ```
 
-2. 时间/日志时间显示 问题
+#### 时间/日志时间显示 问题
 ```bash
 #设置时区
 cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
