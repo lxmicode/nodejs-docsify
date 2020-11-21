@@ -18,3 +18,14 @@
 
 ### ros动态IP映射端口 （参考：https://www.vediotalk.com/archives/2974）
 1. 参考防火墙转发新增，重点comment字段名字
+2. 新增脚本 system - scripts - 重点名字
+```bash
+:global ipaddr [/ip address get [/ip address find interface=pppoe-out1] address]
+:set ipaddr [:pick $ipaddr 0 ([len $ipaddr] -3)]
+:global oldip [/ip firewall nat get [/ip firewall nat find comment="5000"] dst-address]
+:if ($ipaddr != $oldip) do={
+:log info [/ip firewall nat set [/ip firewall nat find comment="5000"] dst-address=$ipaddr]
+}
+```
+3. system - scheduler - Add New 添加一个定时器 
+4. On Event中填入 :execute + 脚本名
