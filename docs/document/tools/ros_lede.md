@@ -1,6 +1,7 @@
 ## ros(拨号) + lede + newifi 2d(AP)
 
-
+### 开启shh
+- ip - services 下面看到ssh都是有启动以及对应端口
 ### ros 查看公网IP
 - interface-ppoe拨号客户端（pppoe-out1) - Local Address
 
