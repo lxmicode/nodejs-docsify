@@ -174,6 +174,52 @@ public interface HelloRemote {
 
 ### 熔断监控Hystrix Dashboard和Turbine
 
+### 配置中心git示例
+- 依赖
+```xml
+<dependencies>
+	<dependency>
+		<groupId>org.springframework.cloud</groupId>
+		<artifactId>spring-cloud-config-server</artifactId>
+	</dependency>
+</dependencies>
+```
+
+- 配置文件
+本地配置：spring.profiles.active=native，默认src/main/resource目录   
+指定路径：spring.cloud.config.server.native.searchLocations=file:E:/properties/   
+推荐使用git的方式。
+```xml
+server:
+  port: 8001
+spring:
+  application:
+    name: spring-cloud-config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/ityouknow/spring-cloud-starter/     # 配置git仓库的地址
+          search-paths: config-repo                             # git仓库地址下的相对地址，可以配置多个，用,分割。
+          username:                                             # git仓库的账号
+          password:                                             # git仓库的密码
+```
+
+- 启动类
+```java
+@EnableConfigServer
+@SpringBootApplication
+public class ConfigServerApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(ConfigServerApplication.class, args);
+	}
+}
+```
+
+- 测试
+直接访问：http://localhost:8001/neo-config/dev
+
 
 ## 参考
 - [纯洁的微笑-学习系列](https://github.com/ityouknow/spring-cloud-examples)
