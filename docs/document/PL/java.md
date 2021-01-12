@@ -158,7 +158,6 @@ public interface HelloRemote {
 
     @RequestMapping(value = "/hello")
     public String hello(@RequestParam(value = "name") String name);
-
 }
 ```
 
@@ -172,6 +171,8 @@ public interface HelloRemote {
 返回：hello neo, this messge send failed
 根据返回结果说明熔断成功。
 ```
+
+### 熔断监控Hystrix Dashboard和Turbine
 
 
 ## 参考
