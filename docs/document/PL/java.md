@@ -41,7 +41,7 @@ eureka.client.fetch-registry=true
 eureka.client.serviceUrl.defaultZone=http://localhost:${server.port}/eureka/
 ```
 - 启动工程后，访问：http://localhost:8000，就可以看到Eureka接口
-![eureka_start.jpg](http://favorites.ren/assets/images/2017/springcloud/eureka_start.jpg)
+[图片参考](http://favorites.ren/assets/images/2017/springcloud/eureka_start.jpg)
 
 
 - 负载配置参考
@@ -57,7 +57,7 @@ mvn clean package
 java -jar spring-cloud-eureka-0.0.1-SNAPSHOT.jar --spring.profiles.active=peer1
 java -jar spring-cloud-eureka-0.0.1-SNAPSHOT.jar --spring.profiles.active=peer2
 ```
-![eureka-two.jpg](http://favorites.ren/assets/images/2017/springcloud/eureka-two.jpg)
+[图片参考](http://favorites.ren/assets/images/2017/springcloud/eureka-two.jpg)
 
 ### eureka服务提供
 - 启动类添加注解(@EnableDiscoveryClient),可以在注册中心的页面看到服务
@@ -88,7 +88,7 @@ public class HelloController {
     }
 }
 ```
-![eureka_server.png](http://favorites.ren/assets/images/2017/springcloud/eureka_server.png)
+[图片参考](http://favorites.ren/assets/images/2017/springcloud/eureka_server.png)
 
 
 
