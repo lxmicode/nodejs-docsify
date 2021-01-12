@@ -40,7 +40,7 @@ eureka.client.fetch-registry=true
 #设置与Eureka Server交互的地址，查询服务和注册服务都需要依赖这个地址，多个逗号隔开
 eureka.client.serviceUrl.defaultZone=http://localhost:${server.port}/eureka/
 ```
-- 启动工程后，访问：http://localhost:8000，就可以看到Eureka接口
+- 启动工程后，访问：http://localhost:8000，就可以看到Eureka接口   
 [图片参考](http://favorites.ren/assets/images/2017/springcloud/eureka_start.jpg)
 
 
