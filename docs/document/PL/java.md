@@ -15,23 +15,32 @@ public class SpringCloudEurekaApplication {
 ```
 - application.properties
 ```properties
+server.port=8000
 #表示是否将自己注册到Eureka Server，默认为true
 eureka.client.register-with-eureka=true
 #表示是否从Eureka Server获取注册信息，默认为true
 eureka.client.fetch-registry=true
 #设置与Eureka Server交互的地址，查询服务和注册服务都需要依赖这个地址，多个逗号隔开
-eureka.client.serviceUrl.defaultZone=http://localhost:8080/eureka/
-#启动工程后，访问：http://localhost:8080，就可以看到Eureka接口
+eureka.client.serviceUrl.defaultZone=http://localhost:${server.port}/eureka/
 ```
+- 启动工程后，访问：http://localhost:8000，就可以看到Eureka接口
+![eureka_start.jpg](http://favorites.ren/assets/images/2017/springcloud/eureka_start.jpg)
+
 
 - 负载配置参考
 ```properties
-#app1配置
-eureka.client.serviceUrl.defaultZone=http://ip2:8080/eureka/
-#app2配置
-eureka.client.serviceUrl.defaultZone=http://ip1:8080/eureka/
+#假设第一个应用app1配置
+eureka.client.serviceUrl.defaultZone=http://peer1:8000/eureka/
+#假设第二个应用app2配置
+eureka.client.serviceUrl.defaultZone=http://ip1:8001/eureka/
 #重点，defaultZone交互地址，填写除自己外的其它所有机器
+#打包
+mvn clean package
+# 分别以peer1和peeer2 配置信息启动eureka
+java -jar spring-cloud-eureka-0.0.1-SNAPSHOT.jar --spring.profiles.active=peer1
+java -jar spring-cloud-eureka-0.0.1-SNAPSHOT.jar --spring.profiles.active=peer2
 ```
+![eureka-two.jpg](http://favorites.ren/assets/images/2017/springcloud/eureka-two.jpg)
 
 ### eureka服务提供者
 - 启动类添加注解(@EnableDiscoveryClient),可以在注册中心的页面看到服务
