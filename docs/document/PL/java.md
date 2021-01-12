@@ -187,7 +187,7 @@ public interface HelloRemote {
 
 - 配置文件
 本地配置：spring.profiles.active=native，默认src/main/resource目录   
-指定路径：spring.cloud.config.server.native.searchLocations=file:E:/properties/   
+指定路径：spring.cloud.config.server.native.searchLocations=配置目录地址   
 推荐使用git的方式。
 ```xml
 server:
