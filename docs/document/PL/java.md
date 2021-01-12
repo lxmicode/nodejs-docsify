@@ -220,6 +220,37 @@ public class ConfigServerApplication {
 - 测试
 直接访问：http://localhost:8001/neo-config/dev
 
+### git refresh 刷新问题
+
+- 依赖
+```xml
+<dependencies>
+	<dependency>
+	  <groupId>org.springframework.boot</groupId>
+	  <artifactId>spring-boot-starter-actuator</artifactId>
+	</dependency>
+</dependencies>
+```
+
+- 开启更新机制
+需要给加载变量的类上面加载@RefreshScope，在客户端执行/refresh
+```java
+@RestController
+@RefreshScope // 使用该注解的类，会在接到SpringCloud配置中心配置刷新的时候，自动将新的配置更新到该类对应的字段中。
+class HelloController {
+
+    @Value("${neo.hello}")
+    private String hello;
+
+    @RequestMapping("/hello")
+    public String from() {
+        return this.hello;
+    }
+}
+```
+
+- 测试
+以post请求的方式来访问http://localhost:8002/refresh 就会更新修改后的配置文件
 
 ## 参考
 - [纯洁的微笑-学习系列](https://github.com/ityouknow/spring-cloud-examples)
