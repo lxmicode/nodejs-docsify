@@ -59,7 +59,7 @@ java -jar spring-cloud-eureka-0.0.1-SNAPSHOT.jar --spring.profiles.active=peer2
 ```
 ![eureka-two.jpg](http://favorites.ren/assets/images/2017/springcloud/eureka-two.jpg)
 
-### eureka服务提供者
+### eureka服务提供
 - 启动类添加注解(@EnableDiscoveryClient),可以在注册中心的页面看到服务
 ```java
 @SpringBootApplication
@@ -73,10 +73,24 @@ public class SpringCloudEurekaApplication {
 - application.properties
 ```properties
 spring.application.name=spring-cloud-producer
-server.port=9001
-eureka.client.serviceUrl.defaultZone=http://localhost:9001/eureka/
+server.port=9000
+#注册中心地址
+eureka.client.serviceUrl.defaultZone=http://localhost:8000/eureka/
 ```
-- 其它跟正常项目一致
+- 控制层 - 提供hello服务
+```java
+@RestController
+public class HelloController {
+	
+    @RequestMapping("/hello")
+    public String index(@RequestParam String name) {
+        return "hello "+name+"，this is first messge";
+    }
+}
+```
+![eureka_server.png](http://favorites.ren/assets/images/2017/springcloud/eureka_server.png)
+
+
 
 ### eureka服务调用
 - 启动类添加注解(@EnableDiscoveryClient),可以在注册中心的页面看到服务
@@ -101,7 +115,7 @@ public interface HelloRemote {
     public String hello(@RequestParam(value = "name") String name);
 }
 ```
-- web调动
+- 控制层调用
 ```java
 @RestController
 public class ConsumerController {
