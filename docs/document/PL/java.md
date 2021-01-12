@@ -8,7 +8,6 @@
 @SpringBootApplication
 @EnableEurekaServer
 public class SpringCloudEurekaApplication {
-
 	public static void main(String[] args) {
 		SpringApplication.run(SpringCloudEurekaApplication.class, args);
 	}
@@ -31,21 +30,64 @@ eureka.client.serviceUrl.defaultZone=http://localhost:8080/eureka/
 eureka.client.serviceUrl.defaultZone=http://ip2:8080/eureka/
 #app2配置
 eureka.client.serviceUrl.defaultZone=http://ip1:8080/eureka/
-#重点，defaultZone交互地址，填写除自己的其它所有机器
+#重点，defaultZone交互地址，填写除自己外的其它所有机器
 ```
 
-### eureka服务提供与调用
-- 启动类添加注解(@EnableDiscoveryClient)
+### eureka服务提供者
+- 启动类添加注解(@EnableDiscoveryClient),可以在注册中心的页面看到服务
 ```java
 @SpringBootApplication
 @EnableDiscoveryClient
 public class SpringCloudEurekaApplication {
-
 	public static void main(String[] args) {
 		SpringApplication.run(SpringCloudEurekaApplication.class, args);
 	}
 }
 ```
+- application.properties
+```properties
+spring.application.name=spring-cloud-producer
+server.port=9001
+eureka.client.serviceUrl.defaultZone=http://localhost:9001/eureka/
+```
+- 其它跟正常项目一致
 
-##参考
+### eureka服务调用
+- 启动类添加注解(@EnableDiscoveryClient),可以在注册中心的页面看到服务
+```java
+@SpringBootApplication
+#启用服务注册与发现
+@EnableDiscoveryClient
+#启用feign进行远程调用
+@EnableFeignClients
+```
+- application.properties
+```properties
+spring.application.name=spring-cloud-consumer
+eureka.client.serviceUrl.defaultZone=http://localhost:8080/eureka/
+```
+- 接口实现
+```java
+#name 远程服务名，及spring.application.name配置的名称
+@FeignClient(name= "app_name")
+public interface HelloRemote {
+    @RequestMapping(value = "/hello")
+    public String hello(@RequestParam(value = "name") String name);
+}
+```
+- web调动
+```java
+@RestController
+public class ConsumerController {
+    @Autowired
+    HelloRemote HelloRemote;
+    
+    @RequestMapping("/hello/{name}")
+    public String index(@PathVariable("name") String name) {
+        return HelloRemote.hello(name);
+    }
+}
+```
+
+## 参考
 - [纯洁的微笑-学习系列](https://github.com/ityouknow/spring-cloud-examples)
