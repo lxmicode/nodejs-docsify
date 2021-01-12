@@ -103,6 +103,7 @@ public class HelloController {
 ```
 - application.properties
 ```properties
+server.port=9001
 spring.application.name=spring-cloud-consumer
 eureka.client.serviceUrl.defaultZone=http://localhost:8080/eureka/
 ```
@@ -128,6 +129,50 @@ public class ConsumerController {
     }
 }
 ```
+
+### 熔断器Hystrix
+判断失败数次超过默认值，调用回调方法放回
+
+- 配置 application.properties
+```properties
+#Feign中已经依赖了Hystrix所以在maven配置上不用做任何改动
+feign.hystrix.enabled=true
+```
+
+- 创建回调类
+```java
+@Component
+public class HelloRemoteHystrix implements HelloRemote{
+
+    @Override
+    public String hello(@RequestParam(value = "name") String name) {
+        return "hello" +name+", this messge send failed ";
+    }
+}
+```
+
+- 添加fallback属性
+```java
+@FeignClient(name= "spring-cloud-producer",fallback = HelloRemoteHystrix.class)
+public interface HelloRemote {
+
+    @RequestMapping(value = "/hello")
+    public String hello(@RequestParam(value = "name") String name);
+
+}
+```
+
+- 测试
+```txt
+依次启动spring-cloud-eureka、spring-cloud-producer、spring-cloud-consumer三个项目。
+浏览器中输入：http://localhost:9001/hello/neo
+返回：hello neo，this is first messge
+说明加入熔断相关信息后，不影响正常的访问。接下来我们手动停止spring-cloud-producer项目再次测试：
+浏览器中输入：http://localhost:9001/hello/neo
+返回：hello neo, this messge send failed
+根据返回结果说明熔断成功。
+```
+
 
 ## 参考
 - [纯洁的微笑-学习系列](https://github.com/ityouknow/spring-cloud-examples)
