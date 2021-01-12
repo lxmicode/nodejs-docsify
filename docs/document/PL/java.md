@@ -2,7 +2,24 @@
 
 ## spring cloud
 ### Eureka注册中心
-- pom.xml导入项目项目
+- pom.xml导入jar
+```xml
+<dependencies>
+	<dependency>
+		<groupId>org.springframework.cloud</groupId>
+		<artifactId>spring-cloud-starter</artifactId>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework.cloud</groupId>
+		<artifactId>spring-cloud-starter-eureka-server</artifactId>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-test</artifactId>
+		<scope>test</scope>
+	</dependency>
+</dependencies>
+```
 - 启动类添加注解(@EnableEurekaServer)
 ```java
 @SpringBootApplication
