@@ -182,12 +182,10 @@
 		
             let max_cengji = 3;    //默认展开层级深度
             //添加箭头
-            $('.sidebar-nav').find('li').each(function (i, e) {
-              var el = e;
-              if (el.childElementCount && el.nextSibling.tagName == 'UL') {
+            $('.sidebar-nav ul ').each(function (i, e) {
+              	var el = e;
                 $(el).addClass('sidebar-nav-parent-li').append(
                   "<div class='ul-after'><div class='ul-after-sanjiao'></div></div>");
-              }
             })
 
             //初始时候展开层级
