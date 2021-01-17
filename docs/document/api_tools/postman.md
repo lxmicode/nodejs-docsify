@@ -24,7 +24,8 @@ pm.environment.set("token", data.uuid);
 #authorization -> type -> Bearer Token ->Token ->{{token}}
 ```
 
-### 可视化响应-visualizer  
+### 可视化响应-visualizer
+- 代码书写位置 Tests标签
 #### 语法
 ```javascript
 var template = `html模板`;
@@ -33,7 +34,7 @@ pm.visualizer.set(template, {
 });
 ```
 
-#### 简单demo(Tests标签中)
+#### 实际场景(Base64验证码)
 ```javascript
 pm.visualizer.set(`
 <img src="data:image/gif;base64,{{response.img}}" />
