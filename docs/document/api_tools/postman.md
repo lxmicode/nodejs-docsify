@@ -9,8 +9,12 @@ pm.environment.set("token", data.uuid);
 ```
 #### 使用
 - {{变量名}}
-- 使用范围,基本全覆盖，包括body-raw(主要json)
-
+- 使用范围,基本全覆盖，包括body-raw(主要json/post/get..)
+```json
+{
+    "token": "{{token}}"
+}
+```
 #### 实际场景(JWT)
 ```javascript
 #设置变量
