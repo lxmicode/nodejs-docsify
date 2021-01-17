@@ -15,7 +15,7 @@ pm.environment.set("token", data.uuid);
     "token": "{{token}}"
 }
 ```
-#### 实际场景(JWT)
+#### 实际场景(JTW)
 ```javascript
 #设置变量
 var data = JSON.parse(responseBody);
