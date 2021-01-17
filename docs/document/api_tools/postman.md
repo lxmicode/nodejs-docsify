@@ -1,13 +1,13 @@
 ## postman牛逼(进阶使用)
 
 ### 使用变量
-#### 全局变量
+- 全局变量
 ```javascript
 #设置UUID到全局变量
 var data = JSON.parse(responseBody);
 pm.environment.set("token", data.uuid);
 ```
-#### 使用
+- 使用
 - {{变量名}}
 - 使用范围,基本全覆盖，包括body-raw(主要json/post/get..)
 ```json
@@ -15,7 +15,7 @@ pm.environment.set("token", data.uuid);
     "token": "{{token}}"
 }
 ```
-#### 实际场景(JTW)
+- 实际场景(JTW)
 ```javascript
 #设置变量
 var data = JSON.parse(responseBody);
@@ -26,7 +26,7 @@ pm.environment.set("token", data.uuid);
 
 ### 可视化响应-visualizer
 - 代码书写位置 Tests标签
-#### 语法
+- 语法
 ```javascript
 var template = `html模板`;
 pm.visualizer.set(template, {
@@ -34,7 +34,7 @@ pm.visualizer.set(template, {
 });
 ```
 
-#### 实际场景(Base64验证码)
+- 实际场景(Base64验证码)
 ```javascript
 pm.visualizer.set(`
 <img src="data:image/gif;base64,{{response.img}}" />
@@ -43,7 +43,7 @@ pm.visualizer.set(`
 });
 ```
 
-#### 结果可以在 Body->visualiz
-#### 官方例子[导入demo](https://app.getpostman.com/run-collection/4e3ee3d03f6e2e7fc250?_ga=2.59246893.1882791416.1610887768-1850767576.1610887768)。
-#### 官方例子[例子文档](https://learning.postman.com/docs/sending-requests/visualizer/#adding-visualizer-code)
+- 结果可以在 Body->visualiz
+- 官方例子[导入demo](https://app.getpostman.com/run-collection/4e3ee3d03f6e2e7fc250?_ga=2.59246893.1882791416.1610887768-1850767576.1610887768)。
+- 官方例子[例子文档](https://learning.postman.com/docs/sending-requests/visualizer/#adding-visualizer-code)
 
