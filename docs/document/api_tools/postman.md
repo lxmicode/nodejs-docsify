@@ -1,5 +1,5 @@
 ## postman牛逼(进阶使用)
-
+- 一线代码书写位置 *Tests标签*
 ### 使用变量
 - 全局变量
 ```javascript
@@ -25,7 +25,6 @@ pm.environment.set("token", data.uuid);
 ```
 
 ### 可视化响应-visualizer
-- 代码书写位置 Tests标签
 - 语法
 ```javascript
 var template = `html模板`;
