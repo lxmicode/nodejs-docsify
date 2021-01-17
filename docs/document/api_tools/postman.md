@@ -3,7 +3,7 @@
 ### 使用变量
 - 全局变量
 ```javascript
-#设置UUID到全局变量
+#设置token到全局变量
 var data = JSON.parse(responseBody);
 pm.environment.set("token", data.uuid);
 ```
