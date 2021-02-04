@@ -8,7 +8,7 @@
 #注释点下面代码   
 #invalid users = root
 
-- 设置用户/密码
+- 设置用户/密码(不设置为匿名)
 
 ```bash
 $ smbpasswd -a root
@@ -25,3 +25,23 @@ $ smbpasswd -a root
 
 - windows 检测是否开启smb协议
 - windows 打开网络，找到共享目录输入上面设置的账号密码
+
+- linux 挂载
+- 命令
+```bash
+#此处匿名方式
+mount -t cifs //192.168.1.5/boot /mnt/lede -o username=root,password=,vers=1.0
+```
+
+- 可能遇到的问题
+  - 查看日志
+  - 未指定版本
+  ```txt
+  debian kernel: [1984525.829579] No dialect specified on mount. Default has changed to a more secure dialect, SMB2.1 or later (e.g. SMB3), from CIFS (SMB1). To use the less secure SMB1 dialect to access old servers which do not support SMB3 (or SMB2.1) specify vers=1.0 on mount.
+  #解决：mount 命令添加 vers=1.0
+  ```
+  
+
+  
+  
+  
