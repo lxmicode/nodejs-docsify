@@ -162,6 +162,12 @@ rpm --rebuilddb
 yum clean all
 ```
 >https://blog.51cto.com/alsww/1742134
+>
 
+### 批量结束进程
+```shell
+kill -9 `ps -ef |grep xxx|awk '{print $2}' `
+```
+ 
 ## 引用和声明
 - 代码和例子来源网上收集整理
