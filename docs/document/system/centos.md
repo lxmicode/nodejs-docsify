@@ -169,5 +169,47 @@ yum clean all
 kill -9 `ps -ef |grep xxx|awk '{print $2}' `
 ```
  
+## 相关问题
+### 解决yum update出错"package is a duplicate with"
+
+```bash
+#错误信息
+Error: Package: glibc-2.12-1.212.el6_10.3.i686 (updates_6)
+           Requires: glibc-common = 2.12-1.212.el6_10.3
+           Installed: glibc-common-2.17-55.el6.x86_64 (installed)
+               glibc-common = 2.17-55.el6
+           Available: glibc-common-2.12-1.149.el6.x86_64 (base)
+               glibc-common = 2.12-1.149.el6
+           Available: glibc-common-2.12-1.209.el6.x86_64 (base_6)
+               glibc-common = 2.12-1.209.el6
+           Available: glibc-common-2.12-1.209.el6_9.1.x86_64 (updates_6)
+               glibc-common = 2.12-1.209.el6_9.1
+           Available: glibc-common-2.12-1.209.el6_9.2.x86_64 (updates_6)
+               glibc-common = 2.12-1.209.el6_9.2
+           Available: glibc-common-2.12-1.212.el6.x86_64 (base_6)
+               glibc-common = 2.12-1.212.el6
+           Available: glibc-common-2.12-1.212.el6_10.3.x86_64 (updates_6)
+               glibc-common = 2.12-1.212.el6_10.3
+ You could try using --skip-broken to work around the problem
+** Found 3 pre-existing rpmdb problem(s), 'yum check' output follows:
+glibc-2.12-1.149.el6.i686 has missing requires of glibc-common = ('0', '2.12', '                                                                                                             1.149.el6')
+glibc-2.17-55.el6.x86_64 is a duplicate with glibc-2.12-1.149.el6.i686
+pam-devel-1.1.1-24.el6.x86_64 has missing requires of pam = ('0', '1.1.1', '24.e                                                                                                             l6')
+
+## 查询有问题依赖包 glibc
+ rpm -qa | grep glibc
+glibc-2.17-55.el6.x86_64
+glibc-devel-2.17-55.el6.x86_64
+glibc-2.12-1.149.el6.i686
+glibc-common-2.17-55.el6.x86_64
+glibc-headers-2.17-55.el6.x86_64
+
+## glibc-2.17-55.el6.x86_64/glibc-2.12-1.149.el6.i686 重复
+## 删除 glibc-2.12-1.149.el6.i686
+## yum remove glibc-2.12-1.149.el6.i686
+## 重新更新 yum update 
+```
+
+ 
 ## 引用和声明
 - 代码和例子来源网上收集整理
