@@ -206,8 +206,9 @@ glibc-headers-2.17-55.el6.x86_64
 
 ## glibc-2.17-55.el6.x86_64/glibc-2.12-1.149.el6.i686 重复
 ## 删除 glibc-2.12-1.149.el6.i686
-## yum remove glibc-2.12-1.149.el6.i686
-## 重新更新 yum update 
+yum remove glibc-2.12-1.149.el6.i686
+## 重新更新 
+yum update -y
 ```
 
  
