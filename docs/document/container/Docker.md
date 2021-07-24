@@ -188,6 +188,15 @@ Alpine Linux Docker 镜像基于 Alpine Linux 操作系统，后者是一个面�
 - nginx:alpine
 - redis:alpine
 
+## 注意
+### 代理宿主机
+- ifconfig或者ipaddr
+```bash
+#debian
+ipaddr 中 ens3 inet参数
+#其它系统
+ifconfig 中 eth0 inet参数
+```
 
 ## 练习
 ### nginx
