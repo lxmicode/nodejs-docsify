@@ -190,6 +190,14 @@ Alpine Linux Docker 镜像基于 Alpine Linux 操作系统，后者是一个面�
 
 
 ## 练习
+### nginx
+- 拉取最新镜像，复制配置到本地
+```bash
+docker pull nginx:latest
+docker run --name nginx-test -p 8080:80 -d nginx 
+docker container cp nginx-test:/etc/nginx ~/app/nginx
+docker rm -f nginx-test
+```
 ### 使用 compose link通讯(同yml)
 - 创建yaml文件,重点在于links参数，创建后web1可以通过 web2代替IP操作（es: http://web2）
 ```yaml
