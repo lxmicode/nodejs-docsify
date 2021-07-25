@@ -190,12 +190,12 @@ Alpine Linux Docker 镜像基于 Alpine Linux 操作系统，后者是一个面�
 
 ## 注意
 ### 代理宿主机
-- ifconfig或者ipaddr
+- ifconfig或者ipaddr 获取宿主机IP，然后再nginx代理使用ip,不能使用localhost/127
 ```bash
 #debian
-ipaddr 中 ens3 inet参数
+ipaddr 中 ens3 inet:ip 参数
 #其它系统
-ifconfig 中 eth0 inet参数
+ifconfig 中 eth0 inet:ip参数
 ```
 
 ## 练习
