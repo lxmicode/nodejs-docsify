@@ -174,27 +174,8 @@ kill -9 `ps -ef |grep xxx|awk '{print $2}' `
 ```shell
 timedatectl set-timezone Asia/Shanghai
 ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
-#debian
-localedef -c -f UTF-8 -i zh_CN zh_CN.utf8
-#同步时间
-ntpdate -u cn.pool.ntp.org
-#再不行,/etc/profile添加
-LANG=zh_CN.UTF-8
-LANGUAGE=
-LC_CTYPE="LC_ALL=zh_CN.UTF-8"
-LC_NUMERIC="LC_ALL=zh_CN.UTF-8"
-LC_TIME="LC_ALL=zh_CN.UTF-8"
-LC_COLLATE="LC_ALL=zh_CN.UTF-8"
-LC_MONETARY="LC_ALL=zh_CN.UTF-8"
-LC_MESSAGES="LC_ALL=zh_CN.UTF-8"
-LC_PAPER="LC_ALL=zh_CN.UTF-8"
-LC_NAME="LC_ALL=zh_CN.UTF-8"
-LC_ADDRESS="LC_ALL=zh_CN.UTF-8"
-LC_TELEPHONE="LC_ALL=zh_CN.UTF-8"
-LC_MEASUREMENT="LC_ALL=zh_CN.UTF-8"
-LC_IDENTIFICATION="LC_ALL=zh_CN.UTF-8"
-LC_ALL=LC_ALL=zh_CN.UTF-8
-
+#安装中文语言包。把zh_几个选上
+dpkg-reconfigure locales
 ```
 
 
