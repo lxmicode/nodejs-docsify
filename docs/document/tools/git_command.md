@@ -72,5 +72,10 @@ $ sudo git commit -m "备注"
 $ sudo git push
 ```
 
+- 备注并提交
+```bash
+git commit -o dy_src -m 'auto' && git push
+```
+
 ## 附录
 - [git命令大全](https://gist.github.com/guweigang/9848271)
