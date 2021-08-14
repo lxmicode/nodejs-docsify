@@ -58,6 +58,22 @@ $ sudo git checkout [name]
 $ sudo git checkout -b [name]
 ```
 
+- 设置默认编辑器
+```bash
+$ git config --global core.editor vim
+#配置编辑
+git config --edit
+#全局配置编辑
+git config --global --edit
+```
+
+- 存储密码
+```bash
+ git config credential.helper store
+ git config --global user.name icode
+ git config --global user.email icode@gmail.com
+```
+
 ## `练习`
 - 例子
 ```bash
