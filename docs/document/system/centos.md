@@ -174,6 +174,14 @@ kill -9 `ps -ef |grep xxx|awk '{print $2}' `
 ```shell
 timedatectl set-timezone Asia/Shanghai
 ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+
+vim /etc/default/locale
+LANG="en_US.UTF-8"
+LC_TIME="en_DK.UTF-8"
+
+#重启
+reboot
+
 #安装中文语言包。把zh_几个选上
 dpkg-reconfigure locales
 ```
