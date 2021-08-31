@@ -42,3 +42,15 @@ print (count) # {'DELL':201}
 set1 = {i for i in range(10) if i%2==0 }
 print(set1) #{2,4,6,8}
 ```
+
+### sublime集成
+- 添加配置
+```json
+{
+	"cmd": ["D:/tools/python3/python.exe","-u","$file"],
+	"file_regex":"^[ ]*File \"(...*?)\", line ([0-9]*)",
+	"selector":"source.python",
+	"encoding": "utf-8" ,
+	"env": {"PYTHONIOENCODING": "utf8"}
+}
+```
