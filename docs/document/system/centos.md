@@ -229,11 +229,16 @@ yum remove glibc-2.12-1.149.el6.i686
 yum update -y
 ```
 
-## 联系
+## 练习
 ### ls 获取第几个
 ```shell
 # 文件按时间倒序，取前10 ，获取第一行
 ls -t |head -n 10 |sed -n '1p'
+```
+### ls 传参并复制
+```shell
+# 查看当前目录的第一个文件，复制到home
+ls -t |head -n 1| xargs -i cp -r {} ~/
 ```
  
 ## 引用和声明
