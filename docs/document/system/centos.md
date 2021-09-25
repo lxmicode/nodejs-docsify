@@ -176,8 +176,8 @@ timedatectl set-timezone Asia/Shanghai
 ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
 vim /etc/default/locale
-LANG="en_US.UTF-8"
-LC_TIME="en_DK.UTF-8"
+LANG=en_US.UTF-8
+LC_TIME=en_DK.UTF-8
 
 #重启
 reboot
