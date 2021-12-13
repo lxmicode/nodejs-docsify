@@ -1,3 +1,4 @@
 - 系统
-  - [centos](document/system/centos.md)
+  - [centerOS](document/system/centos.md)
+  - [windows](document/system/windows.md)
 
