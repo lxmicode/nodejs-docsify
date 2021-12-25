@@ -1,4 +1,4 @@
-## ros(拨号) + lede + newifi 2d(AP)
+## ros(拨号) + lede + newifi 2d AP
 
 ### 开启shh
 - ip - services 下面看到ssh都是有启动以及对应端口
@@ -13,7 +13,7 @@
 | dstnat | 外网地址 | tcp | 对外端口 | 作用 | 内网服务器地址 |端口 |
 | dstnat | 1.1.1.1 | tcp | 80 | dst-nat | 192.168.1.1 |80 |
 
-### ros 转发ip限制
+### ros 转发 ip
 - ip - firewall - Address Lists - Add New 添加一条数记录
 - ip - firewall - NAT - Advanced - Src. Address List - 选择自己新增的
 
