@@ -52,6 +52,8 @@ mount -t cifs //192.168.1.5/boot /mnt/lede -o username=root,password=,vers=1.0
   # 2.如果有windows系统，测试是否能正常打开
   ```
 
+#### 建议
+- 使用SMB高版本，有利于提高传输速率
   
   
   
