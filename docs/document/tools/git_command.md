@@ -73,6 +73,19 @@ git config --global --edit
  git config --global user.name icode
  git config --global user.email icode@gmail.com
 ```
+### 代理
+```bash
+# 设置全部代理
+git config --global https.proxy http://127.0.0.1:7890
+git config --global https.proxy https://127.0.0.1:7890
+
+# 取消代理
+git config --global --unset http.proxy
+git config --global --unset https.proxy
+
+# 指定网址
+git config --global http.https://github.com.proxy socks5://127.0.0.1:7890
+```
 
 ## `练习`
 - 例子
