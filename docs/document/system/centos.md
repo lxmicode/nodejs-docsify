@@ -170,6 +170,8 @@ kill -9 `ps -ef |grep xxx|awk '{print $2}' `
 ```
  
 ## 相关问题
+### 磁盘扩容（无LVM情况）
+[参考](https://blog.csdn.net/u010383467/article/details/123555197)
 ### 同步国内时间与编码
 ```shell
 timedatectl set-timezone Asia/Shanghai
