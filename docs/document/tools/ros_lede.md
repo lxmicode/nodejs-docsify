@@ -1,6 +1,6 @@
-## ros(拨号) + lede + newifi 2d AP
+## esxi + ros(拨号) + lede + newifi 2d AP
 
-### 开启shh
+### 开启ssh
 - ip - services 下面看到ssh都是有启动以及对应端口
 ### ros 查看公网IP
 - interface-ppoe拨号客户端（pppoe-out1) - Local Address
@@ -14,7 +14,7 @@
 | dstnat | 1.1.1.1 | tcp | 80 | dst-nat | 192.168.1.1 |80 |
 
 ### ros 转发 ip
-- ip - firewall - Address Lists - Add New 添加一条数记录
+- ip - firewall - Address Lists - Add New 添加一条记录
 - ip - firewall - NAT - Advanced - Src. Address List - 选择自己新增的
 
 ### ros动态域名解析(动态DDNS 这里用了阿里云) 
