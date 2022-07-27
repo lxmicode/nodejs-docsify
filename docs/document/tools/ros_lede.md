@@ -39,7 +39,8 @@
 
 | Start Time | Interval | On Event |
 |  ----  | ----  | ----  |
-| startup | 00:30:00 | :execute aliyun_ddns |
+| startup | 00:30:00 | :execute aliyun_ddns|
+|   |   | :execute cf_ddns|
 
 ### ros自动绑定外网IP
 - 先创建Nat转发，参考上面
