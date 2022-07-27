@@ -35,7 +35,7 @@
 ```
 3. system - scheduler - Add New - 添加一个名为 aliyun_job 定时器 
 4. On Event中填入 :execute aliyun_ddns (第一步的脚本名)
-5. 下面关键字段（半小时执行一次，阿里云DDNS,多个脚本另起一行）
+5. 下面关键字段（半小时执行一次阿里云DDNS,多个脚本同时执行在On Event另起一行）
 
 | Start Time | Interval | On Event |
 |  ----  | ----  | ----  |
