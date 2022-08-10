@@ -6,7 +6,10 @@
 - 无POM问题
 
 ```text
-org.apache.maven.lifecycle.MissingProjectException: The goal you specified requires a project to execute but there is no POM in this directory (/Users/admin/.m2/repository/xx/xx/xx/1.0). Please verify you invoked Maven from the correct directory.
+org.apache.maven.lifecycle.MissingProjectException: 
+The goal you specified requires a project to execute but there is no POM in this directory 
+(/Users/admin/.m2/repository/xx/xx/xx/1.0). 
+Please verify you invoked Maven from the correct directory.
 ```
 
 - 解决命令，使用双引号
