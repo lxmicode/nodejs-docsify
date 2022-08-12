@@ -188,6 +188,19 @@ reboot
 dpkg-reconfigure locales
 ```
 
+### 日志查询分割
+```bash
+sed -n '/2022:22:00:00/,/2022:23:00:00/p' 2022_08_11_access_log > 20220502-10.log
+
+# 按文件大小分割
+split -b 500M -d --verbose catalina.out base-split-name
+# 按文件行数分割
+split -l 50000 -d --verbose catalina.out base-split-name
+# 按个数分割
+split -n 4 catalina.out base-split-name
+
+```
+
 
 
 ### 解决yum update出错"package is a duplicate with"
