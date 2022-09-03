@@ -294,6 +294,7 @@ networks:
 
 ### mysql 搭建练习
 - 搭建Mysql 设置管理密码和添加一个管理员账号，MYSQL_USER 默认管理员权限
+
 ```shell
 docker run --name db \
  -p 3306:3306 \
@@ -303,6 +304,17 @@ docker run --name db \
  -itd mysql:5.7.31 \
 ```
 
+### 查看容器的命令
+- 因没有使用编排，时间长了，忘记启动时候参数
+
+```shell
+# 借用python
+pip install runlike
+# 不换行
+runlike <container-name>
+# 换行
+runlike -p <container-name>
+```
 
 
 
