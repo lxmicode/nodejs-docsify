@@ -19,9 +19,11 @@ POST /_analyze
 }
 ```
 
-### 创建文档
+### 索引库操作
 - put /doc_name
+
 ```bash
+# put /lxmicode
 {
   "mappings": {
     "properties": {
@@ -47,3 +49,20 @@ POST /_analyze
   }
 }
 ```
+
+- get /doc_name 
+- delete /doc_name  
+- update /doc_name/_mapping
+
+```bash
+# update /lxmicode/_mapping
+{
+  properties": {
+      "info": {
+        "type": "text",
+        "analyzer": "ik_max_word"
+      }
+  }
+}
+```
+
