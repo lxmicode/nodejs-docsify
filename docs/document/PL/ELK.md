@@ -71,9 +71,10 @@ POST /_analyze
 - get /doc_name/_doc/{id} 查询
 - delete /doc_name/_doc/{id} 删除
 ```bash
+# 新增
 # post /lxmicode/_doc/1
 {
-  "info":"超云小鲜肉，你真的身材好棒棒，武功很欧力给！",
+  "info":"赵云小鲜肉，你的身材好棒棒，武功很欧力给！",
   "email":"chaoyun@muji.com",
   "name":{
     "fistName":"张",
@@ -85,8 +86,8 @@ POST /_analyze
 ```bash
 # post /lxmicode/_doc/1
 {
-  "info":"超云小鲜肉，你真的身材好棒棒，武功很欧力给！",
-  "email":"chaoyun@muji.com",
+  "info":"赵云小鲜肉，你真的身材好棒棒，武功很欧力给！",
+  "email":"zhaoyun@muji.com",
   "name":{
     "fistName":"张",
     "lastName":"飞"
