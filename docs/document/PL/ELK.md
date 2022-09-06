@@ -69,7 +69,7 @@ POST /_analyze
 ### 文档操作
 - post /doc_name/_doc/{id} 新增
 - get /doc_name/_doc/{id} 查询
-- delete /doc_name/_doc/{id} 
+- delete /doc_name/_doc/{id} 删除
 ```bash
 # post /lxmicode/_doc/1
 {
@@ -81,10 +81,24 @@ POST /_analyze
   }
 }
 ```
-- update /doc_name/_doc/{id}
+- put /doc_name/_doc/{id} 全量修改，先删除后新增
 ```bash
 # post /lxmicode/_doc/1
 {
-  "email":"zhaoyun@muji.com",
+  "info":"超云小鲜肉，你真的身材好棒棒，武功很欧力给！",
+  "email":"chaoyun@muji.com",
+  "name":{
+    "fistName":"张",
+    "lastName":"飞"
+  }
+}
+```
+- post /doc_name/_doc/{id} 增量修改
+```bash
+# post /lxmicode/_update/1
+{
+  "doc":{
+    "email":"zhaoyun@muji.com"
+  }
 }
 ```
