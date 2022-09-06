@@ -18,3 +18,32 @@ POST /_analyze
   "analyzer":"ik_max_word"
 }
 ```
+
+### 创建文档
+- put /doc_name
+```bash
+{
+  "mappings": {
+    "properties": {
+      "info": {
+        "type": "text", //text需要分词
+        "analyzer": "ik_max_word" //分词器
+      },
+      "email": {
+        "type": "keyword",
+        "index": false //不建立索引，后期筛选不了
+      },
+      "name": {
+        "properties": {//多属性嵌套 - properties
+          "firstName": {
+            "type": "keyword"
+          },
+          "lastName": {
+            "type": "keyword"
+          }
+        }
+      }
+    }
+  }
+}
+```
