@@ -66,3 +66,25 @@ POST /_analyze
 }
 ```
 
+### 文档操作
+- post /doc_name/_doc/{id} 新增
+- get /doc_name/_doc/{id} 查询
+- delete /doc_name/_doc/{id} 
+```bash
+# post /lxmicode/_doc/1
+{
+  "info":"超云小鲜肉，你真的身材好棒棒，武功很欧力给！",
+  "email":"chaoyun@muji.com",
+  "name":{
+    "fistName":"张",
+    "lastName":"飞"
+  }
+}
+```
+- update /doc_name/_doc/{id}
+```bash
+# post /lxmicode/_doc/1
+{
+  "email":"zhaoyun@muji.com",
+}
+```
