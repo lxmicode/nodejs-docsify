@@ -21,6 +21,7 @@ POST /_analyze
 
 ### 搜索
 - [参考-elastic](https://www.elastic.co/guide/cn/elasticsearch/guide/current/search-lite.html)
+
 ```txt
 # 查询info字段
 GET /lxmicode/_search?q=info:赵云
