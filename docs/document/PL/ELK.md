@@ -82,6 +82,7 @@ GET /_search?q=%2Bname%3Ajohn+%2Btweet%3Amary
 - post /doc_name/_doc/{id} 新增
 - get /doc_name/_doc/{id} 查询
 - delete /doc_name/_doc/{id} 删除
+
 ```bash
 # 新增
 # post /lxmicode/_doc/1
@@ -94,7 +95,9 @@ GET /_search?q=%2Bname%3Ajohn+%2Btweet%3Amary
   }
 }
 ```
+
 - put /doc_name/_doc/{id} 全量修改，先删除后新增
+
 ```bash
 # post /lxmicode/_doc/1
 {
@@ -106,6 +109,7 @@ GET /_search?q=%2Bname%3Ajohn+%2Btweet%3Amary
   }
 }
 ```
+
 - post /doc_name/_doc/{id} 增量修改
 ```bash
 # post /lxmicode/_update/1
