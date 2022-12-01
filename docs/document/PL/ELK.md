@@ -19,12 +19,15 @@ POST /_analyze
 }
 ```
 
-### 搜索
+### 搜索命令
 - [参考-elastic](https://www.elastic.co/guide/cn/elasticsearch/guide/current/search-lite.html)
 
 ```txt
+# 查询索引库下所有文档数据
+GET /索引库/_search
+
 # 查询info字段
-GET /lxmicode/_search?q=info:赵云
+GET /索引库/_search?q=info:赵云
 
 # 查询在info&&mail 同时包含内容 
 # info:五虎将+info:赵云
