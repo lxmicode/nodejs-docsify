@@ -82,6 +82,10 @@ tail -f /var/log/cron
 1 * * * * /usr/local/bin/node test.js
 ```
 
+#### 编码
+iconv -f GBK -t UTF-8 log.txt > text_ut8
+
+
 #### 时间/日志时间显示 问题
 ```bash
 #设置时区
