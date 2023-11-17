@@ -2,6 +2,6 @@
 
 ### 查看cron日志
 ```bash
-# debian12版本，开始使用journalctl记录日志，不再使用syslog
+# debian12版本，开始使用journalctl记录日志，不再使用rsyslog
 journalctl -u cron.service -n 50 --no-pager
 ```
