@@ -1,4 +1,5 @@
 - 系统
   - [centerOS](document/system/centos.md)
+  - [debian](document/system/debian.md)
   - [windows](document/system/windows.md)
   - [kylinos](document/system/kylinos.md)
