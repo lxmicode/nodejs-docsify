@@ -60,3 +60,26 @@ sudo reboot
 # 检查系统版本
 lsb_release -a
 ```
+
+### 测试
+```txt
+# 国内电信 1G
+wget https://vipspeedtest8.wuhan.net.cn:8080/download?size=1073741824
+# 亚洲 100MB（Vultr）
+wget https://sgp-ping.vultr.com/vultr.com.100MB.bin
+wget https://sgp.proof.ovh.net/files/1Gb.dat
+```
+
+### 问题
+
+#### 磁盘名称每次重启变化
+```bash
+# 查看磁盘信息，获取UUID
+blkid
+# 编辑fstab文件，加入开机启动自动挂载
+vim /etc/fstab
+# 添加格式
+UUID=<UUID> <mount_point> <type> defaults 0 2
+例如：
+UUID=xxxx-xxxx /mnt/data ext4 defaults 0 2
+```
