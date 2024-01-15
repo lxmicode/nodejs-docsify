@@ -1,2 +1,4 @@
 - 接口工具
   - [postman](document/api_tools/postman.md)
+  - [finalshell](document/api_tools/finalshell.md)
+  - [wireshare](document/api_tools/wireshare.md)
