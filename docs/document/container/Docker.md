@@ -316,6 +316,13 @@ runlike <container-name>
 runlike -p <container-name>
 ```
 
+### 修改镜像源
+```bash
+cd /etc/docker
+wget https://gitee.com/iicode/my_sharecode/raw/master/daemon.json
+sudo systemctl daemon-reload
+sudo systemctl restart docker
+```
 
 
 
