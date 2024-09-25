@@ -91,6 +91,57 @@ git merge A/master
 # 4. 推送更新到B仓库
 git push origin master
 ```
+- 一键脚本待完成
+```
+#!/bin/bash
+
+# 定义变量
+SOURCE_REPO_URL="http://test.com/test-mgt"  # 源仓库的Git URL
+TARGET_REPO_URL="git@example.com:user/target_repo.git"  # 目标仓库的Git URL
+PROJECT_NAME="test-mgt"                              # 项目文件夹名称
+BRANCH_PREFIX="origin/"                                 # 分支前缀，通常是"origin/"
+
+# 克隆源仓库
+echo "正在克隆源仓库..."
+git clone $SOURCE_REPO_URL $PROJECT_NAME
+cd $PROJECT_NAME
+
+# 获取所有远程分支并创建本地分支
+echo "获取远程分支列表..."
+git fetch origin
+
+# 创建所有本地分支并checkout
+echo "创建并切换到所有远程分支..."
+for remote_branch in $(git branch -r | grep -v '\->' | sed "s#$BRANCH_PREFIX##"); do 
+    git checkout -b $remote_branch $BRANCH_PREFIX$remote_branch
+done
+
+
+# 初始化目标仓库
+cd ..
+echo "初始化目标仓库..."
+git init target_project
+cd target_project
+
+# 配置远程目标仓库
+echo "配置远程目标仓库..."
+git remote add origin $TARGET_REPO_URL
+
+# 确保我们在一个分支上（比如main/master），以便可以推送其他分支
+echo "切换到主分支..."
+git checkout -b main  # 或者使用master，取决于你的主分支名称
+
+# 推送所有分支到目标仓库
+cd ../$PROJECT_NAME
+echo "开始推送所有分支到目标仓库..."
+for branch in $(git branch | cut -c 3-); do
+    echo "正在推送分支 $branch"
+    git push -u $TARGET_REPO_URL $branch:$branch
+done
+
+echo "所有分支已推送至目标仓库。"
+
+```
 
 ### 代理
 ```bash
