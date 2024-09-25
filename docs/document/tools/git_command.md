@@ -73,6 +73,25 @@ git config --global --edit
  git config --global user.name icode
  git config --global user.email icode@gmail.com
 ```
+
+### 代码迁移
+- 迁移思路：添加新仓库地址 -> 把老仓库地址提交到的仓库
+- 合并思路：新仓库B -> 添加老仓库A地址 -> 合并B到A
+```bash
+
+# 1. 在B仓库的test项目中添加A仓库的test项目为远程仓库
+git remote add A http://test.com/test.git
+
+# 2. 获取A仓库的test项目master分支
+git fetch A master
+
+# 3. 合并A仓库的test项目master分支到B仓库的test项目master分支
+git merge A/master
+
+# 4. 推送更新到B仓库
+git push origin master
+```
+
 ### 代理
 ```bash
 # 设置全部代理
