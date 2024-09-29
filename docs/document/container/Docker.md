@@ -80,6 +80,17 @@ $ docker update --restart=always <CONTAINER ID>
  `prune       删除未使用`
  `rm          删除`
 
+## 实际中应用
+### 备份数据库
+```bash
+# 后台运行备份数据库
+nohup docker exec my_mysql sh -c 'exec mysqldump -u root -p"123" --single-transaction test_db blade_code' > test_db.sql 2> /dev/null &
+
+# 还原数据库
+cat test_db.sql | docker exec -i my_mysql sh -c 'exec mysql -u root -p"123" test_db2'
+
+```
+
 - 例子
 创建一个容器卷,并创建一个nginx容器挂载html页面
 ```docker
