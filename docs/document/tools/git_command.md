@@ -92,7 +92,8 @@ git merge A/master
 git push origin master
 ```
 - 一键脚本待完成
-```
+  
+``` bash
 #!/bin/bash
 
 # 定义变量
