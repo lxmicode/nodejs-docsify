@@ -74,7 +74,7 @@ wget https://sgp.proof.ovh.net/files/1Gb.dat
 
 #### 防火墙问题
 - 目前ubuntu遇到过,防火墙有先后顺序的问题
-```text
+```txt
  1848 74028 DROP       all  --  *      *       0.0.0.0/0            0.0.0.0/0            ctstate INVALID
  251K   19M REJECT     all  --  *      *       0.0.0.0/0            0.0.0.0/0            reject-with icmp-host-prohibited
     0     0 ACCEPT     tcp  --  *      *       192.168.1.75        0.0.0.0/0            tcp dpt:10086
