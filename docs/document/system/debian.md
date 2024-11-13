@@ -72,6 +72,17 @@ wget https://sgp.proof.ovh.net/files/1Gb.dat
 
 ### 问题
 
+#### 防火墙问题
+- 目前ubuntu遇到过,防火墙有先后顺序的问题
+```text
+ 1848 74028 DROP       all  --  *      *       0.0.0.0/0            0.0.0.0/0            ctstate INVALID
+ 251K   19M REJECT     all  --  *      *       0.0.0.0/0            0.0.0.0/0            reject-with icmp-host-prohibited
+    0     0 ACCEPT     tcp  --  *      *       192.168.1.75        0.0.0.0/0            tcp dpt:10086
+    0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            0.0.0.0/0            tcp dpt:10086
+
+1.75是访问不到本机的， REJECT已经全部拦截， 在REJECT之后的规则都被拦截了
+```
+
 #### 磁盘名称每次重启变化
 ```bash
 # 查看磁盘信息，获取UUID
