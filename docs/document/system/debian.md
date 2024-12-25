@@ -78,16 +78,15 @@ systemctl enable rc-local.service
 systemctl start rc-local.service
 # 查看状态, 如果提示/etc/rc.local文件不存在，就创建一个
 systemctl status rc-local.service
-
-
 ```
+
 - 文件rc.local例子
+
 ```text
 #!/bin/sh -e
 # 开机启动
 
 ```
-
 
 ### 问题
 
