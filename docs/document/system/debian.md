@@ -83,7 +83,7 @@ systemctl status rc-local.service
 ```
 - 文件rc.local例子
 ```text
-#!/bin/bash
+#!/bin/sh -e
 # 开机启动
 
 ```
