@@ -61,7 +61,7 @@ sudo reboot
 lsb_release -a
 ```
 
-### 测试
+### 测下载速度
 ```txt
 # 国内电信 1G
 wget https://vipspeedtest8.wuhan.net.cn:8080/download?size=1073741824
@@ -69,6 +69,25 @@ wget https://vipspeedtest8.wuhan.net.cn:8080/download?size=1073741824
 wget https://sgp-ping.vultr.com/vultr.com.100MB.bin
 wget https://sgp.proof.ovh.net/files/1Gb.dat
 ```
+
+### 开启启动脚本
+```bash
+# 设置开机启动
+systemctl enable rc-local.service
+# 启动
+systemctl start rc-local.service
+# 查看状态, 如果提示/etc/rc.local文件不存在，就创建一个
+systemctl status rc-local.service
+
+
+```
+- 文件rc.local例子
+```text
+#!/bin/bash
+# 开机启动
+
+```
+
 
 ### 问题
 
