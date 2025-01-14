@@ -89,10 +89,7 @@ systemctl status rc-local.service
 ```
 
 
-
-### 问题
-
-#### 防火墙问题
+### 防火墙问题
 - 目前ubuntu遇到过,防火墙有先后顺序的问题
 ```txt
  1848 74028 DROP       all  --  *      *       0.0.0.0/0            0.0.0.0/0            ctstate INVALID
@@ -103,14 +100,14 @@ systemctl status rc-local.service
 1.75是访问不到本机的， REJECT已经全部拦截， 在REJECT之后的规则都被拦截了
 ```
 
-#### 测试两服务器端口是否通
+### 测试两服务器端口是否通
 ```bash
 # 服务器A占用端口
 nc -l -v -p 8888
 # 服务器B telnet 8888 测试
 ```
 
-#### 磁盘名称每次重启变化
+### 磁盘名称每次重启变化
 ```bash
 # 查看磁盘信息，获取UUID
 blkid
