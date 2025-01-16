@@ -1,5 +1,32 @@
 ## Debian 命令和问题
 
+### 美化命令行
+```bash
+# 完整步骤
+apt install zsh
+curl	sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+awk '{gsub(/ZSH_THEME="robbyrussell"/, "ZSH_THEME=\"agnoster\""); print}' ~/.zshrc > temp && mv temp ~/.zshrc
+source ~/.zshrc
+
+Ubuntu安装
+apt install zsh
+CentOs安装
+yum install zsh
+查看版本，是否安装成功的标志
+zsh --version
+Ubuntu设为默认shell
+chsh -s $(which zsh)
+CentOs设为默认shell
+chsh -s /bin/zsh
+
+方式	命令 -github源
+curl	sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+方式	命令 -gitee源
+sh -c "$(curl -fsSL https://gitee.com/gloriaied/oh-my-zsh/raw/master/tools/install.sh)"
+
+agnoster
+```
+
 ### 设置时间
 ```bash
 # 安装ntp
@@ -69,6 +96,7 @@ wget https://vipspeedtest8.wuhan.net.cn:8080/download?size=1073741824
 wget https://sgp-ping.vultr.com/vultr.com.100MB.bin
 wget https://sgp.proof.ovh.net/files/1Gb.dat
 ```
+
 
 ### 开启启动脚本
 ```bash
