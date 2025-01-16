@@ -4,7 +4,7 @@
 ```bash
 # 完整步骤
 apt install -y zsh
-curl	sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 awk '{gsub(/ZSH_THEME="robbyrussell"/, "ZSH_THEME=\"agnoster\""); print}' ~/.zshrc > temp && mv temp ~/.zshrc
 source ~/.zshrc
 
