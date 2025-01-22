@@ -1,5 +1,18 @@
 ## Debian 命令和问题
 
+### 机器之间免密码
+```bash
+# 比如 服务器A，服务器B
+# 2台服务器各自执行一次生成证书
+ssh-keygen -t rsa
+
+# 把自己的公钥复制到远程服务，2台互相推送一次
+# A执行
+ssh-copy-id root@B.id
+# B执行
+ssh-copy-id root@A.id
+```
+
 ### 美化命令行
 ```bash
 # 完整步骤
