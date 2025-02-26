@@ -192,6 +192,10 @@ services:
       - /root/nginx/html:/usr/share/nginx/html
 ```
 
+## 迁移数据目录
+- 起因：系统磁盘满，挂载新磁盘到 /app
+
+```bash
 # 确认当前 Docker 数据存储路径
 docker info | grep "Docker Root Dir"
 
@@ -231,6 +235,8 @@ sudo rm -rf /var/lib/docker
 # 存在问题：挂载目录没变
 # 解决办法1： 重启电脑
 # 解决办法2： 重启对应的服务器
+```
+
 
 ## 相关其它
 ### alpine
