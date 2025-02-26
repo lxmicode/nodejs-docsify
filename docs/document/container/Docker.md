@@ -192,6 +192,46 @@ services:
       - /root/nginx/html:/usr/share/nginx/html
 ```
 
+# 确认当前 Docker 数据存储路径
+docker info | grep "Docker Root Dir"
+
+# 停止 Docker 服务在修改配置之前，需要先停止 Docker 服务，以确保数据一致性：
+sudo systemctl stop docker
+
+# 迁移现有数据到新目录 
+# 将现有的 Docker 数据从默认目录（如 /var/lib/docker）迁移到新的目标目录（如 /app/docker）。可以使用 rsync 或 cp 命令完成数据迁移。
+# 使用 rsync 迁移数据： -a：保留文件属性和权限。 -P：显示进度并支持断点续传。
+sudo rsync -aP /var/lib/docker/ /app/docker/
+
+# 验证数据完整性：
+# 迁移完成后，检查 /app/docker 目录是否包含所有必要的文件和子目录。
+# 修改 Docker 配置文件
+# Docker 的配置文件通常位于 /etc/docker/daemon.json。如果没有该文件，可以手动创建。
+
+# 编辑或创建 /etc/docker/daemon.json 文件：
+# 添加以下内容，指定新的数据存储路径：
+# json
+
+{
+  "data-root": "/app/docker"
+}
+
+
+# 重启 Docker 服务
+# 完成配置后，重新启动 Docker 服务以应用更改：
+sudo systemctl start docker
+
+# 验证配置是否生效 再次运行以下命令，确认 Docker 的数据存储路径已更改为 /app/docker：
+docker info | grep "Docker Root Dir"
+
+# 清理旧数据（可选）
+# 如果迁移成功且 Docker 正常运行，可以删除旧的 /var/lib/docker 目录以释放空间：
+sudo rm -rf /var/lib/docker
+
+# 存在问题：挂载目录没变
+# 解决办法1： 重启电脑
+# 解决办法2： 重启对应的服务器
+
 ## 相关其它
 ### alpine
 Alpine Linux Docker 镜像基于 Alpine Linux 操作系统，后者是一个面向安全的轻型 Linux 发行版。Alpine Linux Docker 镜像也继承了 Alpine Linux 发行版的这些优势。相比于其他 Docker 镜像，它的容量非常小，仅仅只有 5M，且拥有非常友好的包管理器。
