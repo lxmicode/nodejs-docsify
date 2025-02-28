@@ -22,6 +22,8 @@ sh -c "$(curl -fsSL https://gitee.com/gloriaied/oh-my-zsh/raw/master/tools/insta
 
 awk '{gsub(/ZSH_THEME="robbyrussell"/, "ZSH_THEME=\"agnoster\""); print}' ~/.zshrc > temp && mv temp ~/.zshrc
 
+echo "export TIME_STYLE='long-iso'" >> ~/.zshrc
+
 source ~/.zshrc
 
 Ubuntu安装
