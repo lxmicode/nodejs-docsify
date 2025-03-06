@@ -13,6 +13,13 @@ ssh-copy-id root@B.id
 ssh-copy-id root@A.id
 ```
 
+### unzip乱码问题
+- win中打包存在中文名字的文件，然后在linux中解压文件名乱码
+```bash
+unzip -O CP936 your_file.zip
+#unzip -O UTF-8 your_file.zip
+```
+
 ### 美化命令行
 ```bash
 # 完整步骤
