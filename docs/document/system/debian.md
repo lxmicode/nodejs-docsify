@@ -141,9 +141,21 @@ systemctl status rc-local.service
 
 ```
 
+### 服务测试端口
+```bash
+# 占用一下端口
+nc -lk -p 8080
+# 在对应的服务器测试端口是否通
+curl -v 
+```
 
 ### 防火墙问题
 - 目前ubuntu遇到过,防火墙有先后顺序的问题
+- docker内部容器无法访问宿主机端口
+- ufw ufw disable 可以直接先关闭防火墙检查
+- ufw enable 启动防火墙
+- 或者 ufw allow 8080/tcp 把对应的端口不限制
+- 在容器动使用 curl -v 宿主机IP:端口测试
 ```txt
  1848 74028 DROP       all  --  *      *       0.0.0.0/0            0.0.0.0/0            ctstate INVALID
  251K   19M REJECT     all  --  *      *       0.0.0.0/0            0.0.0.0/0            reject-with icmp-host-prohibited
@@ -157,7 +169,9 @@ systemctl status rc-local.service
 ```bash
 # 服务器A占用端口
 nc -l -v -p 8888
-# 服务器B telnet 8888 测试
+# 在对应的服务测试端口
+telnet ip port
+curl -v http://ip:port
 ```
 
 ### 磁盘名称每次重启变化
