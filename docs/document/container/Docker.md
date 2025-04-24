@@ -261,6 +261,132 @@ ipaddr 中 ens3 inet:ip 参数
 ifconfig 中 eth0 inet:ip参数
 ```
 
+##  常用脚本
+### `查看日志`
+```bash
+#!/bin/bash
+
+# 默认参数（"-" 表示未填写）
+cntr_name="-"
+time="-"
+keyword="-"
+start_time="-"
+end_time="-"
+
+# 参数解析（支持命令行参数）
+while [[ ${#} -gt 0 ]]; do
+  case "${1}" in
+    -n|--name)     cntr_name="${2}"; shift 2 ;;
+    -t|--time)     time="${2}";      shift 2 ;;
+    -k|--keyword)  keyword="${2}";   shift 2 ;;
+    --start)       start_time="${2}";shift 2 ;;
+    --end)         end_time="${2}";  shift 2 ;;
+    *) echo "未知参数: ${1}"; exit 1 ;;
+  esac
+done
+
+# ================================================
+# 校验必填参数
+# ================================================
+if [ "${cntr_name}" = "-" ]; then
+  echo "错误：必须指定容器名或容器ID（-n/--name）"
+  exit 1
+fi
+
+# ================================================
+# 处理时间参数
+# ================================================
+SINCE=""
+UNTIL=""
+
+# 检查是否所有时间参数都未填写
+if [ "${time}${start_time}${end_time}" = "---" ]; then
+  SINCE="--since 5m"  # 默认查询最近5分钟
+else
+  # 处理 time 参数（相对时间）
+  if [ "${time}" != "-" ]; then
+    if [[ "${time}" =~ ^[0-9]+[mhd]$ ]]; then
+      SINCE="--since ${time}"
+    else
+      echo "错误：time 参数格式错误（示例：5m/2h/3d）"
+      exit 1
+    fi
+  fi
+
+  # 处理 start_time 和 end_time（绝对时间）
+  if [ "${start_time}" != "-" ] || [ "${end_time}" != "-" ]; then
+    # 辅助函数：转换日期格式
+    parse_date() {
+      local input="${1}"
+      local type="${2}"
+      local parsed_date
+
+      # 检查是否为完整 ISO 时间戳（yyyy-mm-ddThh:mm:ss）
+      if [[ "${input}" =~ ^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}$ ]]; then
+        # 补充本地时区信息
+        parsed_date=$(date -d "${input}" +"%Y-%m-%dT%H:%M:%S%z" 2>/dev/null)
+      # 检查是否为仅日期（yyyy-mm-dd）
+      elif [[ "${input}" =~ ^[0-9]{4}-[0-9]{2}-[0-9]{2}$ ]]; then
+        if [ "${type}" = "start" ]; then
+          parsed_date=$(date -d "${input}T00:00:00" +"%Y-%m-%dT%H:%M:%S%z" 2>/dev/null)
+        else
+          parsed_date=$(date -d "${input}T23:59:59" +"%Y-%m-%dT%H:%M:%S%z" 2>/dev/null)
+        fi
+      else
+        echo "错误：时间格式无效（支持：yyyy-mm-dd 或 yyyy-mm-ddThh:mm:ss）"
+        exit 1
+      fi
+
+      # 检查解析是否成功
+      if [ -z "${parsed_date}" ]; then
+        echo "错误：无法解析时间 '${input}'"
+        exit 1
+      fi
+
+      echo "${parsed_date}"
+    }
+
+    # 处理 start_time
+    if [ "${start_time}" != "-" ]; then
+      parsed_start=$(parse_date "${start_time}" "start")
+      SINCE="--since ${parsed_start}"
+    fi
+
+    # 处理 end_time
+    if [ "${end_time}" != "-" ]; then
+      parsed_end=$(parse_date "${end_time}" "end")
+      UNTIL="--until ${parsed_end}"
+    fi
+  fi
+fi
+
+# ================================================
+# 构建日志命令
+# ================================================
+# 查找容器ID（支持模糊匹配）
+CONTAINER_ID=$(docker ps -a --filter "name=${cntr_name}" --format "{{.ID}}")
+if [ -z "${CONTAINER_ID}" ]; then
+  echo "错误：未找到容器 '${cntr_name}'"
+  exit 1
+fi
+
+LOG_CMD="docker logs ${SINCE} ${UNTIL} ${CONTAINER_ID} 2>&1"
+
+# 添加关键字过滤
+if [ "${keyword}" != "-" ]; then
+  LOG_CMD="${LOG_CMD} | grep -i --color=auto '${keyword}'"
+fi
+
+# ================================================
+# 执行查询
+# ================================================
+echo "查询容器 ${CONTAINER_ID} 日志..."
+echo "时间范围：${SINCE} ${UNTIL}"
+echo "关键字：${keyword}"
+echo "---------- 日志内容 ----------"
+eval ${LOG_CMD}
+```
+
 ## 练习
 ### nginx
 - 拉取最新镜像，复制配置到本地
