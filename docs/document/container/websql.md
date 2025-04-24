@@ -1,4 +1,6 @@
-# websql web数据库管理工具
+# websql 
+> web数据库管理工具
+- 简单实用
 
 ## docker部署
 ```docker
@@ -16,3 +18,6 @@ services:
     tty: true
     restart: unless-stopped
 ```
+
+## 感谢
+- [cgy0214-websql](https://github.com/cgy0214/websql/tree/master)
