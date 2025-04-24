@@ -10,6 +10,12 @@ $ sudo systemctl enable docke
 
 
 ## 镜像命令
+### `log命令`
+```
+# 查看40分钟内的日志,根据关键字
+docker logs --since 40m 镜像名或ID | grep "关键字"
+```
+
 ###  `search 查询镜像` 
 - 查询镜像
 ```docker
