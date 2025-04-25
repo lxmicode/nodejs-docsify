@@ -13,6 +13,13 @@ ssh-copy-id root@B.id
 ssh-copy-id root@A.id
 ```
 
+### 常用linux命令
+#### grep
+```bash
+grep "关键字" 文件名
+
+```
+
 ### unzip乱码问题
 - win中打包存在中文名字的文件，然后在linux中解压文件名乱码
 ```bash
