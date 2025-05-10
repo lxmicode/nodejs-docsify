@@ -1,1 +1,2 @@
-#
+- 音乐
+  - [xiaomusic](document/music/xiaomusic.md)
