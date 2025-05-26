@@ -177,5 +177,15 @@ $ sudo git push
 git commit -o dy_src -m 'auto' && git push
 ```
 
+## 问题
+- gitee编辑后结束符号问题
+```bash
+# 强制仓库使用 LF 换行符
+touch .gitattributes
+# 添加内容
+*.sh text eol=lf
+* text=auto
+```
+
 ## 附录
 - [git命令大全](https://gist.github.com/guweigang/9848271)
