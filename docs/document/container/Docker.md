@@ -244,7 +244,15 @@ sudo rm -rf /var/lib/docker
 ```
 
 
+
 ## 相关其它
+
+### 一键脚本
+- 创建nginx,复制/etc/nginx html到当前目录，以及docker-compose例子文件
+```bash
+curl -sSL https://gitee.com/iicode/my_sharecode/raw/master/cp_nginx_conf.sh | bash
+```
+
 ### alpine
 Alpine Linux Docker 镜像基于 Alpine Linux 操作系统，后者是一个面向安全的轻型 Linux 发行版。Alpine Linux Docker 镜像也继承了 Alpine Linux 发行版的这些优势。相比于其他 Docker 镜像，它的容量非常小，仅仅只有 5M，且拥有非常友好的包管理器。
 
