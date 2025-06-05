@@ -2,3 +2,4 @@
   - [Python](document/PL/python.md)
   - [JAVA](document/PL/java.md)
   - [ELK](document/PL/ELK.md)
+  - [JS](document/PL/JavaScript.md)
