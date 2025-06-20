@@ -77,6 +77,7 @@ git config --global --edit
 ### 代码迁移
 - 迁移思路：添加新仓库地址 -> 把老仓库地址提交到的仓库
 - 合并思路：新仓库B -> 添加老仓库A地址 -> 合并B到A
+
 ```bash
 
 # 1. 在B仓库的test项目中添加A仓库的test项目为远程仓库
@@ -91,6 +92,7 @@ git merge A/master
 # 4. 推送更新到B仓库
 git push origin master
 ```
+
 - 一键脚本待完成
   
 ``` bash
@@ -145,6 +147,7 @@ echo "所有分支已推送至目标仓库。"
 ```
 
 ### 代理
+
 ```bash
 # 设置全部代理
 git config --global https.proxy http://127.0.0.1:7890
@@ -173,6 +176,7 @@ $ sudo git push
 ```
 
 - 备注并提交
+  
 ```bash
 git commit -o dy_src -m 'auto' && git push
 ```
