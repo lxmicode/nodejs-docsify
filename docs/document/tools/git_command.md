@@ -95,7 +95,7 @@ git push origin master
 
 - 一键脚本待完成
   
-``` bash
+```bash
 #!/bin/bash
 
 # 定义变量
