@@ -2,7 +2,9 @@
 
 
 ## 常用脚本
+
 ### 控制台颜色
+
 ```JavaScript
 /**
  * 增强 console.log，支持通过第一个参数指定关键字来应用样式。
@@ -98,4 +100,59 @@ function enhanceConsoleLog() {
 // console.log('debug', '用户请求处理中...', { userId: 123 });
 // console.log('这是一条正常的日志消息');
 // console.log(123, { data: 'object' }); // 非字符串开头，正常打印
+```
+
+## 问题
+
+### console对象被删除
+> 通过iframe来修复以及冻结对象
+
+```javascript
+    (function restoreConsoleHardened() {
+      try {
+        var iframe = document.createElement('iframe');
+        iframe.style.display = 'none';
+        (document.body || document.documentElement).appendChild(iframe);
+
+        var real = iframe.contentWindow.console;
+
+        var methods = [
+          'log','info','warn','error','debug',
+          'dir','dirxml','table','trace',
+          'group','groupCollapsed','groupEnd',
+          'clear','count','countReset',
+          'time','timeLog','timeEnd',
+          'assert','profile','profileEnd','timeStamp'
+        ];
+
+        var safeConsole = {};
+        for (var i = 0; i < methods.length; i++) {
+          var m = methods[i];
+          var fn = real[m] || real.log;
+          // 绑定 this，确保调用环境正确
+          safeConsole[m] = typeof fn === 'function' ? fn.bind(real) : function(){};
+        }
+
+        // 冻结对象，避免方法被改
+        try { Object.freeze(safeConsole); } catch (_) {}
+
+        // 把 window.console 设为不可写/不可配置，防止再次被 delete 或覆盖
+        Object.defineProperty(window, 'console', {
+          value: safeConsole,
+          writable: false,
+          configurable: false,
+          enumerable: true
+        });
+
+        // 验证输出
+        window.console.log('✅ console restored (hardened)');
+      } catch (e) {
+        // 如果 iframe 被 CSP 等策略拦截，至少放个降级方案
+        window.console = {
+          log: function(){}, info: function(){}, warn: function(){}, error: function(){},
+          debug: function(){}, trace: function(){}, table: function(){}, assert: function(){}
+        };
+      }
+    })();
+
 ```
